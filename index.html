@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial - Inteligência Operacional</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        nokorre: {
+                            green: '#CCFF00', // Verde vibrante da marca
+                            dark: '#111111',  // Fundo escuro principal
+                            card: '#1A1A1A',  // Fundo dos cards escuros
+                            gray: '#2D2D2D',  // Bordas e detalhes
+                            text: '#E0E0E0'   // Texto claro
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .neon-border { border-left: 4px solid #CCFF00; }
+        .neon-shadow { box-shadow: 0 0 15px rgba(204, 255, 0, 0.1); }
+        .hover-neon:hover { box-shadow: 0 0 20px rgba(204, 255, 0, 0.3); transform: translateY(-3px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-nokorre-dark text-nokorre-text font-sans antialiased">
+
+    <!-- Header / Hero Section -->
+    <header class="relative pt-20 pb-32 overflow-hidden border-b border-nokorre-gray">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="flex items-center gap-4 mb-12">
+                <!-- Logo Placeholder -->
+                <div class="w-12 h-12 bg-nokorre-green flex items-center justify-center rounded text-nokorre-dark font-bold text-2xl">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-white tracking-widest uppercase">noKorre</h2>
+            </div>
+            
+            <div class="max-w-3xl">
+                <span class="text-nokorre-green font-bold tracking-wider text-sm uppercase mb-4 block">Proposta Comercial</span>
+                <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                    Inteligência <br> Operacional
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 border-l-4 border-nokorre-green pl-4">
+                    Estruture suas planilhas de forma inteligente e transforme os dados da sua operação em informações visuais e estratégicas para tomada de decisão rápida e aumento de rentabilidade.
+                </p>
+                <a href="#proposta" class="inline-block bg-nokorre-green text-nokorre-dark font-bold py-4 px-8 rounded-full hover:bg-white transition duration-300 transform hover:scale-105">
+                    Ver Proposta Completa
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- O Problema (Excel) vs Solução -->
+    <section id="proposta" class="py-20 bg-[#0a0a0a]">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">A Evolução da Sua Gestão</h2>
+                <p class="text-gray-400">Entendemos que as planilhas são a base da sua operação, mas para escalar com segurança, elas precisam estar padronizadas para alimentar um painel de visão clara e em tempo real.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- O Cenario Atual -->
+                <div class="bg-nokorre-card p-8 rounded-xl border border-red-900/30 opacity-80">
+                    <div class="text-red-500 text-3xl mb-4"><i class="fa-solid fa-file-excel"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Cenário Atual (Desestruturado)</h3>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Visão fragmentada: dados espalhados em várias abas ou planilhas sem padrão.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Tempo excessivo gasto atualizando fórmulas complexas e caçando erros.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Risco de erros de digitação que mascaram prejuízos ocultos ou inadimplência.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Dificuldade de cruzar informações e gerar relatórios executivos rápidos.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- O Novo Cenario -->
+                <div class="bg-nokorre-card p-8 rounded-xl border border-nokorre-green relative overflow-hidden neon-shadow">
+                    <div class="absolute top-0 right-0 bg-nokorre-green text-nokorre-dark text-xs font-bold px-3 py-1 rounded-bl-lg">NOVO PADRÃO</div>
+                    <div class="text-nokorre-green text-3xl mb-4"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">A Solução (Controle + Dashboard)</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-nokorre-green mt-1"></i>
+                            <span><strong>Operação Estruturada:</strong> Planilhas padronizadas e otimizadas desde o cadastro até o faturamento.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Tempo excessivo gasto atualizando fórmulas e alimentando dados manualmente.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Risco de erros humanos que mascaram prejuízos ocultos ou inadimplência.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-xmark text-red-500 mt-1"></i>
+                            <span>Dificuldade de cruzar informações (Ex: Cliente x Manutenção x Rentabilidade).</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- O Novo Cenario -->
+                <div class="bg-nokorre-card p-8 rounded-xl border border-nokorre-green relative overflow-hidden neon-shadow">
+                    <div class="absolute top-0 right-0 bg-nokorre-green text-nokorre-dark text-xs font-bold px-3 py-1 rounded-bl-lg">NOVO PADRÃO</div>
+                    <div class="text-nokorre-green text-3xl mb-4"><i class="fa-solid fa-chart-pie"></i></div>
+                    <h3 class="text-2xl font-bold text-white mb-4">A Nossa Solução (Dashboard)</h3>
+                    <ul class="space-y-4 text-gray-300">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-nokorre-green mt-1"></i>
+                            <span><strong>Operação Estruturada:</strong> Coleta de dados padronizada desde o cadastro até o faturamento.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-nokorre-green mt-1"></i>
+                            <span><strong>Visão Executiva 360º:</strong> Todos os indicadores essenciais em uma única tela, atualizados.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-nokorre-green mt-1"></i>
+                            <span><strong>Cruzamento Inteligente:</strong> Saiba exatamente qual moto dá mais lucro e qual bairro tem maior demanda.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-check text-nokorre-green mt-1"></i>
+                            <span><strong>Decisões baseadas em fatos:</strong> Controle de inadimplência, manutenções e ociosidade em um clique.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O que ele vai ver (Indicadores) -->
+    <section class="py-20 bg-nokorre-dark border-t border-b border-nokorre-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-nokorre-green font-bold text-sm tracking-wider uppercase">Seu Novo Radar</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">Indicadores Estratégicos Monitorados</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Estas são as quatro colunas de dados que iremos estruturar e transformar em inteligência visual para você governar o negócio.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pillar 1 -->
+                <div class="bg-nokorre-green text-nokorre-dark p-8 rounded-[2rem] hover-neon">
+                    <h3 class="text-2xl font-bold mb-6 text-center border-b border-nokorre-dark/20 pb-4">Clientes</h3>
+                    <ul class="space-y-3 font-semibold text-sm">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Perfil dos clientes</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Clientes recorrentes</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Índice de inadimplência</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Regiões com maior demanda</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-nokorre-green text-nokorre-dark p-8 rounded-[2rem] hover-neon mt-0 lg:mt-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center border-b border-nokorre-dark/20 pb-4">Locações</h3>
+                    <ul class="space-y-3 font-semibold text-sm">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Receita mensal</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Taxa de ocupação</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Ticket médio</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Volume de contratos</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Tempo médio de locação</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-nokorre-green text-nokorre-dark p-8 rounded-[2rem] hover-neon">
+                    <h3 class="text-2xl font-bold mb-6 text-center border-b border-nokorre-dark/20 pb-4">Manutenção</h3>
+                    <ul class="space-y-3 font-semibold text-sm">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Custo por veículo</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Veículos com maior manutenção</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Dias parados</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Histórico de manutenção</li>
+                    </ul>
+                </div>
+
+                <!-- Pillar 4 -->
+                <div class="bg-nokorre-green text-nokorre-dark p-8 rounded-[2rem] hover-neon mt-0 lg:mt-8">
+                    <h3 class="text-2xl font-bold mb-6 text-center border-b border-nokorre-dark/20 pb-4">Veículos</h3>
+                    <ul class="space-y-3 font-semibold text-sm">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Receita por moto/carro</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> KM rodado</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Tempo operacional</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Rentabilidade</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-caret-right"></i> Disponibilidade</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <p class="text-xl text-gray-300 italic max-w-4xl mx-auto">
+                    "Empresas que crescem de forma estruturada utilizam dados para controlar operação, reduzir perdas e aumentar lucratividade."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona -->
+    <section class="py-20 bg-white text-nokorre-dark">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16">Como Funciona o Fluxo da Informação</h2>
+            
+            <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-16 relative">
+                <!-- Oculto em mobile para simplificar -->
+                <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gray-200 -z-10 transform -translate-y-1/2"></div>
+                
+                <!-- Step 1 -->
+                <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                    <div class="w-20 h-20 rounded-full border-4 border-gray-100 flex items-center justify-center text-3xl mb-4 relative bg-white">
+                        <span class="absolute -top-2 -left-2 bg-black text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">01</span>
+                        <i class="fa-regular fa-user"></i>
+                        <i class="fa-solid fa-circle-check absolute bottom-0 right-0 text-nokorre-green text-lg bg-white rounded-full"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Cliente</h4>
+                    <p class="text-xs text-center text-gray-600">Cadastro e dados dos clientes são registrados no sistema.</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:block text-nokorre-green"><i class="fa-solid fa-arrow-right"></i></div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                    <div class="w-20 h-20 rounded-full border-4 border-gray-100 flex items-center justify-center text-3xl mb-4 relative bg-white">
+                        <span class="absolute -top-2 -left-2 bg-black text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">02</span>
+                        <i class="fa-solid fa-motorcycle"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Locação</h4>
+                    <p class="text-xs text-center text-gray-600">Informações da locação como veículo, período, e condições.</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:block text-nokorre-green"><i class="fa-solid fa-arrow-right"></i></div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                    <div class="w-20 h-20 rounded-full border-4 border-gray-100 flex items-center justify-center text-3xl mb-4 relative bg-white text-nokorre-green">
+                        <span class="absolute -top-2 -left-2 bg-black text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">03</span>
+                        <i class="fa-solid fa-circle-dollar-to-slot"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Receita</h4>
+                    <p class="text-xs text-center text-gray-600">Receitas são geradas e registradas por locação e veículo.</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:block text-nokorre-green"><i class="fa-solid fa-arrow-right"></i></div>
+
+                <!-- Step 4 -->
+                <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                    <div class="w-20 h-20 rounded-full border-4 border-gray-100 flex items-center justify-center text-3xl mb-4 relative bg-white">
+                        <span class="absolute -top-2 -left-2 bg-black text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">04</span>
+                        <i class="fa-solid fa-wrench"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Manutenção</h4>
+                    <p class="text-xs text-center text-gray-600">Custos, tipos e dias parados são registrados.</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:block text-nokorre-green"><i class="fa-solid fa-arrow-right"></i></div>
+
+                <!-- Step 5 -->
+                <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                    <div class="w-20 h-20 rounded-full border-4 border-gray-100 flex items-center justify-center text-3xl mb-4 relative bg-white">
+                        <span class="absolute -top-2 -left-2 bg-black text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">05</span>
+                        <i class="fa-solid fa-chart-column"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Indicadores</h4>
+                    <p class="text-xs text-center text-gray-600">Dados organizados e transformados em inteligência.</p>
+                </div>
+
+                <!-- Arrow -->
+                <div class="hidden md:block text-nokorre-green"><i class="fa-solid fa-arrow-right"></i></div>
+
+                <!-- Step 6 -->
+                <div class="flex flex-col items-center bg-white p-4 z-10 w-40">
+                    <div class="w-20 h-20 rounded-full border-4 border-gray-100 flex items-center justify-center text-3xl mb-4 relative bg-white">
+                        <span class="absolute -top-2 -left-2 bg-black text-white w-6 h-6 rounded-full text-xs flex items-center justify-center font-bold">06</span>
+                        <i class="fa-solid fa-bullseye text-nokorre-green"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">Decisão</h4>
+                    <p class="text-xs text-center text-gray-600">Informações claras e confiáveis para ações rápidas.</p>
+                </div>
+            </div>
+
+            <!-- O que isso gera -->
+            <div class="border border-gray-200 rounded-2xl p-8 shadow-sm">
+                <h3 class="text-center font-bold text-xl mb-8 border-b pb-4">O que isso gera para o seu negócio</h3>
+                
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-sm">
+                    <div class="flex flex-col gap-2">
+                        <i class="fa-solid fa-chart-simple text-nokorre-green text-3xl"></i>
+                        <strong class="text-black">Mais Controle</strong>
+                        <p class="text-gray-500 text-xs">Visão completa da operação em um só lugar.</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <i class="fa-solid fa-circle-dollar-to-slot text-nokorre-green text-3xl"></i>
+                        <strong class="text-black">Mais Rentabilidade</strong>
+                        <p class="text-gray-500 text-xs">Identificação de oportunidades e redução de custos.</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <i class="fa-solid fa-shield-halved text-nokorre-green text-3xl"></i>
+                        <strong class="text-black">Menos Riscos</strong>
+                        <p class="text-gray-500 text-xs">Controle de inadimplência e disponibilidade.</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <i class="fa-regular fa-clock text-nokorre-green text-3xl"></i>
+                        <strong class="text-black">Mais Eficiência</strong>
+                        <p class="text-gray-500 text-xs">Processos organizados, sem tempo perdido em planilhas.</p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <i class="fa-solid fa-people-group text-nokorre-green text-3xl"></i>
+                        <strong class="text-black">Mais Crescimento</strong>
+                        <p class="text-gray-500 text-xs">Estratégias assertivas para expandir a frota.</p>
+                    </div>
+                </div>
+
+                <div class="mt-8 bg-black text-white p-4 rounded-xl flex items-center gap-4">
+                    <i class="fa-regular fa-lightbulb text-nokorre-green text-2xl"></i>
+                    <p class="text-sm font-light">
+                        <strong class="text-nokorre-green">Resumindo:</strong> organizamos suas planilhas, estruturamos os processos e conectamos os dados a um Dashboard Executivo que gera insights e <strong class="text-nokorre-green">resultados reais</strong> para o negócio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Preview do Dashboard (Mockup Visual) -->
+    <section class="py-20 bg-nokorre-dark">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Um Modelo do seu futuro Dashboard</h2>
+                <p class="text-gray-400">É assim que seus números passarão a ser consumidos diariamente.</p>
+            </div>
+
+            <!-- Dashboard Mockup (CSS only representation) -->
+            <div class="bg-black border border-gray-800 rounded-xl p-4 md:p-6 shadow-2xl overflow-hidden pointer-events-none select-none">
+                
+                <!-- Top Row KPIs -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">Faturamento Total</span>
+                            <i class="fa-solid fa-dollar-sign text-nokorre-green opacity-50"></i>
+                        </div>
+                        <div class="mt-2 text-2xl md:text-3xl font-bold text-nokorre-green">R$ 194.560</div>
+                        <div class="mt-2 text-[10px] text-gray-500"><span class="text-nokorre-green">▲ 18,7%</span> vs período anterior</div>
+                    </div>
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">Locações</span>
+                            <i class="fa-solid fa-chart-line text-nokorre-green opacity-50"></i>
+                        </div>
+                        <div class="mt-2 text-2xl md:text-3xl font-bold text-nokorre-green">450</div>
+                        <div class="mt-2 text-[10px] text-gray-500"><span class="text-nokorre-green">▲ 15,3%</span> vs período anterior</div>
+                    </div>
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">Ocupação</span>
+                            <i class="fa-solid fa-motorcycle text-nokorre-green opacity-50"></i>
+                        </div>
+                        <div class="mt-2 text-2xl md:text-3xl font-bold text-nokorre-green">78,4%</div>
+                        <div class="mt-2 text-[10px] text-gray-500"><span class="text-nokorre-green">▲ 6,8%</span> vs período anterior</div>
+                    </div>
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">Ticket Médio</span>
+                            <i class="fa-solid fa-ticket text-nokorre-green opacity-50"></i>
+                        </div>
+                        <div class="mt-2 text-2xl md:text-3xl font-bold text-nokorre-green">R$ 216,76</div>
+                        <div class="mt-2 text-[10px] text-gray-500"><span class="text-red-500">▼ -1,6%</span> vs período anterior</div>
+                    </div>
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg flex flex-col justify-between">
+                        <div class="flex justify-between items-start">
+                            <span class="text-gray-400 text-xs uppercase font-bold tracking-wider">Rec. / Moto</span>
+                            <i class="fa-solid fa-gauge-high text-nokorre-green opacity-50"></i>
+                        </div>
+                        <div class="mt-2 text-2xl md:text-3xl font-bold text-nokorre-green">R$ 6.485</div>
+                        <div class="mt-2 text-[10px] text-gray-500"><span class="text-nokorre-green">▲ 17,9%</span> vs período anterior</div>
+                    </div>
+                </div>
+
+                <!-- Middle Row -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Faturamento por Mes Bar Chart Mock -->
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg h-48 flex flex-col">
+                        <span class="text-gray-400 text-xs uppercase font-bold mb-4 block">Faturamento por Mês</span>
+                        <div class="flex items-end justify-between h-full gap-2 px-4 pb-2">
+                            <div class="w-full bg-nokorre-green/80 hover:bg-nokorre-green rounded-t-sm relative" style="height: 60%">
+                                <span class="absolute -top-5 left-1/2 transform -translate-x-1/2 text-[10px] text-white">MAR</span>
+                            </div>
+                            <div class="w-full bg-nokorre-green/90 hover:bg-nokorre-green rounded-t-sm relative" style="height: 80%">
+                                <span class="absolute -top-5 left-1/2 transform -translate-x-1/2 text-[10px] text-white">ABR</span>
+                            </div>
+                            <div class="w-full bg-nokorre-green rounded-t-sm relative" style="height: 100%">
+                                <span class="absolute -top-5 left-1/2 transform -translate-x-1/2 text-[10px] text-white font-bold">MAI</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inadimplencia Donut Mock -->
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg flex items-center justify-between">
+                        <div class="text-center w-1/2">
+                            <div class="w-24 h-24 rounded-full border-8 border-gray-800 border-t-red-600 border-r-red-600 mx-auto flex items-center justify-center">
+                                <span class="text-xl font-bold text-white">7,8%</span>
+                            </div>
+                            <span class="text-[10px] text-gray-400 mt-2 block uppercase">Inadimplência</span>
+                        </div>
+                        <div class="w-1/2">
+                            <div class="text-2xl font-bold text-red-500">R$ 15.210</div>
+                            <div class="text-xs text-gray-400 mb-2">Valor em aberto</div>
+                            <div class="text-xs text-gray-300 flex items-center gap-2"><i class="fa-solid fa-users"></i> 23 clientes</div>
+                        </div>
+                    </div>
+
+                    <!-- Top Motos List -->
+                    <div class="bg-[#111111] border border-gray-800 p-4 rounded-lg">
+                         <span class="text-gray-400 text-xs uppercase font-bold mb-3 block">Top Motos Rentáveis</span>
+                         <div class="space-y-3">
+                             <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                                 <div class="flex items-center gap-2 text-xs text-gray-300"><i class="fa-solid fa-motorcycle text-nokorre-green"></i> CG 160</div>
+                                 <div class="text-nokorre-green text-xs font-bold">R$ 29.480</div>
+                             </div>
+                             <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                                 <div class="flex items-center gap-2 text-xs text-gray-300"><i class="fa-solid fa-motorcycle text-nokorre-green"></i> Factor 150</div>
+                                 <div class="text-nokorre-green text-xs font-bold">R$ 22.810</div>
+                             </div>
+                             <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                                 <div class="flex items-center gap-2 text-xs text-gray-300"><i class="fa-solid fa-motorcycle text-nokorre-green"></i> Biz 125</div>
+                                 <div class="text-nokorre-green text-xs font-bold">R$ 18.460</div>
+                             </div>
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Fim do Mockup -->
+        </div>
+    </section>
+
+    <!-- Próximos Passos / CTA -->
+    <section class="py-20 bg-nokorre-green text-nokorre-dark text-center">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Pronto para estruturar sua operação?</h2>
+            <p class="text-lg font-medium mb-10 opacity-80">
+                Avalie os pontos desta proposta. O próximo passo é iniciarmos a padronização das suas planilhas e desenhar o fluxo que alimentará seu novo Dashboard. Aguardo seu retorno!
+            </p>
+            <p class="text-sm mt-6 font-bold uppercase tracking-widest text-black/60">Desenvolvido por Lucas Analytics</p>
+        </div>
+    </section>
+
+    <footer class="bg-black py-8 border-t border-gray-900 text-center">
+        <div class="container mx-auto px-6">
+            <p class="text-gray-500 text-sm">© 2026 Lucas Analytics. Documento confidencial.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
