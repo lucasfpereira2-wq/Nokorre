@@ -119,10 +119,119 @@
       </div>
 
     </div>
+
+    <!-- NOVA SEÇÃO: Comparativo Financiamento Tradicional -->
+    <div class="mt-16 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <div class="flex items-center gap-3 mb-8">
+        <div class="h-8 w-2 bg-slate-800 rounded-full"></div>
+        <h2 class="text-xl font-bold text-slate-800 uppercase tracking-tight">Comparativo: Financiamento Tradicional</h2>
+      </div>
+
+      <!-- Calculadora Horizontal -->
+      <div class="w-full overflow-x-auto pb-8 pt-2">
+        <div class="flex items-center justify-start xl:justify-center gap-3 sm:gap-4 min-w-max px-2">
+          
+          <!-- Box: Input Moto -->
+          <div class="w-40 border border-slate-800 rounded flex flex-col text-center overflow-hidden shrink-0">
+             <div class="bg-slate-900 text-lime-400 text-[10px] sm:text-xs font-bold py-1.5 px-1 uppercase tracking-wider">Valor da Moto</div>
+             <div class="bg-white py-2 flex items-center justify-center">
+                <span class="font-bold text-slate-800 text-sm sm:text-base mr-1">R$</span>
+                <input type="text" id="moto-input-trad" class="w-24 text-center font-bold text-slate-800 outline-none text-sm sm:text-base bg-transparent" value="16.000,00" />
+             </div>
+          </div>
+
+          <!-- Arrow Separator -->
+          <div class="text-slate-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </div>
+          
+          <!-- Parcela -->
+          <div class="w-32 border border-slate-800 rounded flex flex-col text-center overflow-hidden shrink-0">
+             <div class="bg-slate-900 text-lime-400 text-[10px] sm:text-xs font-bold py-1.5 uppercase tracking-wider">Parcela</div>
+             <div class="bg-white text-slate-800 font-semibold py-2 text-sm sm:text-base" id="trad-parcela">R$ 0,00</div>
+          </div>
+
+          <!-- + -->
+          <div class="text-xl sm:text-2xl font-black text-slate-800">+</div>
+
+          <!-- Seguro -->
+          <div class="w-32 border border-slate-800 rounded flex flex-col text-center overflow-hidden shrink-0">
+             <div class="bg-slate-900 text-lime-400 text-[10px] sm:text-xs font-bold py-1.5 uppercase tracking-wider">Seguro</div>
+             <div class="bg-white text-slate-800 font-semibold py-2 text-sm sm:text-base" id="trad-seguro">R$ 150,00</div>
+          </div>
+
+          <!-- + -->
+          <div class="text-xl sm:text-2xl font-black text-slate-800">+</div>
+
+          <!-- Documento -->
+          <div class="w-32 border border-slate-800 rounded flex flex-col text-center overflow-hidden shrink-0">
+             <div class="bg-slate-900 text-lime-400 text-[10px] sm:text-xs font-bold py-1.5 uppercase tracking-wider">Documento</div>
+             <div class="bg-white text-slate-800 font-semibold py-2 text-sm sm:text-base" id="trad-doc">R$ 0,00</div>
+          </div>
+
+          <!-- + -->
+          <div class="text-xl sm:text-2xl font-black text-slate-800">+</div>
+
+          <!-- Manutenção -->
+          <div class="w-32 border border-slate-800 rounded flex flex-col text-center overflow-hidden shrink-0">
+             <div class="bg-slate-900 text-lime-400 text-[10px] sm:text-xs font-bold py-1.5 uppercase tracking-wider">Manutenção</div>
+             <div class="bg-white text-slate-800 font-semibold py-2 text-sm sm:text-base" id="trad-manutencao">R$ 0,00</div>
+          </div>
+
+          <!-- + -->
+          <div class="text-xl sm:text-2xl font-black text-slate-800">+</div>
+
+          <!-- Depreciação -->
+          <div class="w-32 border border-slate-800 rounded flex flex-col text-center overflow-hidden shrink-0">
+             <div class="bg-slate-900 text-lime-400 text-[10px] sm:text-xs font-bold py-1.5 uppercase tracking-wider">Depreciação</div>
+             <div class="bg-white text-slate-800 font-semibold py-2 text-sm sm:text-base" id="trad-depreciacao">R$ 0,00</div>
+          </div>
+
+          <!-- = -->
+          <div class="text-2xl sm:text-3xl font-black text-slate-800">=</div>
+
+          <!-- Resultado Real -->
+          <div class="w-36 border border-green-600 rounded flex flex-col text-center overflow-hidden shadow-md shrink-0 bg-white transform xl:scale-110 xl:ml-3">
+             <div class="bg-green-500 text-white text-[10px] sm:text-xs font-bold py-1.5 uppercase tracking-wider">Valor Real</div>
+             <div class="text-slate-900 font-black py-2 text-sm sm:text-base" id="trad-total">R$ 0,00</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Resumo Comparativo final -->
+      <div class="mt-10 bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <h3 class="text-lg font-bold text-slate-800 text-center mb-6">Desempenho Mensal (Comparado ao Plano NoKorre de 36x)</h3>
+        
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-6 sm:gap-12">
+          <!-- Custo Tradicional -->
+          <div class="text-center">
+             <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Custo Tradicional Real</p>
+             <p class="text-2xl font-black text-slate-800" id="comp-trad-view">R$ 0,00</p>
+          </div>
+          
+          <div class="text-slate-300 font-black text-2xl hidden sm:block">VS</div>
+          
+          <!-- Custo NoKorre -->
+          <div class="text-center">
+             <p class="text-xs uppercase tracking-wider text-slate-500 font-bold mb-1">Custo Plano NoKorre (36x)</p>
+             <p class="text-2xl font-black text-lime-600" id="comp-nokorre-view">R$ 0,00</p>
+          </div>
+        </div>
+
+        <!-- Box de Economia / Diferença -->
+        <div id="comp-diferenca-box" class="mt-8 bg-lime-100 text-lime-800 rounded-xl py-4 px-6 text-center max-w-md mx-auto border border-lime-200 shadow-sm transition-colors">
+           <p class="text-xs font-bold uppercase tracking-wide mb-1" id="comp-diferenca-label">Economia Mensal NoKorre</p>
+           <p class="text-3xl font-black" id="comp-diferenca-view">R$ 0,00</p>
+        </div>
+      </div>
+
+    </div>
+
   </main>
 
   <script>
-    // Constantes de Configuração
+    // Constantes de Configuração Principais
     const CATEGORIES = {
       'Econômica': { mensal: 1120, desc: 'Entrada, menor custo' },
       'Do Korre': { mensal: 1400, desc: 'Categoria padrão' },
@@ -137,11 +246,12 @@
       { months: 36, rate: 0.025 }, // 2.5% ao mês
     ];
 
-    // Estado da Aplicação
+    // Estados da Aplicação
     let motoValue = 14000;
     let category = 'Plus';
+    let motoValueTrad = 16000; // Estado específico para o Financiamento Tradicional
 
-    // Elementos do DOM
+    // Elementos do DOM - Principal
     const motoInput = document.getElementById('moto-input');
     const categorySelect = document.getElementById('category-select');
     const categoryDesc = document.getElementById('category-desc');
@@ -149,7 +259,10 @@
     const semanalContainer = document.getElementById('semanal-cards');
     const diariaContainer = document.getElementById('diaria-cards');
 
-    // Event Listeners
+    // Elementos do DOM - Tradicional
+    const motoInputTrad = document.getElementById('moto-input-trad');
+
+    // Event Listeners Principais
     motoInput.addEventListener('input', (e) => {
       let val = e.target.value.replace(/\D/g, '');
       if (!val) val = '0';
@@ -163,6 +276,17 @@
       category = e.target.value;
       categoryDesc.textContent = CATEGORIES[category].desc;
       renderCalculations();
+      renderTradicional(); // Atualiza o comparativo tradicional também
+    });
+
+    // Event Listener Tradicional
+    motoInputTrad.addEventListener('input', (e) => {
+      let val = e.target.value.replace(/\D/g, '');
+      if (!val) val = '0';
+      const num = parseInt(val, 10) / 100;
+      motoValueTrad = num;
+      e.target.value = num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      renderTradicional();
     });
 
     // Funções de Cálculo e Formatação
@@ -175,7 +299,7 @@
       return val.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
 
-    // Função para gerar o HTML de um Card
+    // Função para gerar o HTML de um Card Principal
     function createCardHTML(period, aluguel, parcela, total, highlightColor) {
       const aluguelFormatted = total !== 0 ? formatCurrency(aluguel) : 'R$ 0,00';
       const parcelaFormatted = formatCurrency(parcela);
@@ -208,7 +332,7 @@
       `;
     }
 
-    // Função para renderizar todos os cálculos
+    // Função para renderizar todos os cálculos principais
     function renderCalculations() {
       const aluguelMensal = CATEGORIES[category].mensal;
 
@@ -241,8 +365,66 @@
       diariaContainer.innerHTML = diariaHTML;
     }
 
+    // Função para renderizar a Seção de Comparativo Tradicional
+    function renderTradicional() {
+      if (!motoValueTrad) motoValueTrad = 0;
+
+      // Cálculos baseados na regra:
+      // Taxa: 4% ao mês
+      // Seguro: Fixo R$ 150
+      // Documento: 4% do valor total / 12
+      // Manutenção: 1% do valor total
+      // Depreciação: 12% do valor total / 12 (que equivale a 1% ao mês)
+      
+      const taxa = 0.04;
+      const parcela = calculatePMT(motoValueTrad, taxa, 36);
+      const seguro = 150.00;
+      const documento = (motoValueTrad * 0.04) / 12;
+      const manutencao = motoValueTrad * 0.01;
+      const depreciacao = (motoValueTrad * 0.12) / 12;
+      
+      const totalReal = parcela + seguro + documento + manutencao + depreciacao;
+
+      // Atualiza Stack DOM
+      document.getElementById('trad-parcela').textContent = formatCurrency(parcela);
+      document.getElementById('trad-seguro').textContent = formatCurrency(seguro);
+      document.getElementById('trad-doc').textContent = formatCurrency(documento);
+      document.getElementById('trad-manutencao').textContent = formatCurrency(manutencao);
+      document.getElementById('trad-depreciacao').textContent = formatCurrency(depreciacao);
+      document.getElementById('trad-total').textContent = formatCurrency(totalReal);
+
+      // ----- COMPARAÇÃO COM NOKORRE 36X -----
+      // Utilizamos o mesmo valor (motoValueTrad) e calculamos a taxa do plano de 36x (2.5%) 
+      // + O Aluguel da Categoria selecionada no topo
+      const nokorreParcela = calculatePMT(motoValueTrad, 0.025, 36);
+      const nokorreAluguel = CATEGORIES[category].mensal;
+      const nokorreTotal = nokorreParcela + nokorreAluguel;
+
+      const diferenca = totalReal - nokorreTotal;
+
+      // Atualiza DOM de Resumo
+      document.getElementById('comp-trad-view').textContent = formatCurrency(totalReal);
+      document.getElementById('comp-nokorre-view').textContent = formatCurrency(nokorreTotal);
+      document.getElementById('comp-diferenca-view').textContent = formatCurrency(Math.abs(diferenca));
+
+      // Estilização condicional se a diferença for economia ou custo adicional
+      const difBox = document.getElementById('comp-diferenca-box');
+      const difLabel = document.getElementById('comp-diferenca-label');
+      
+      if (diferenca > 0) {
+        // NoKorre é mais barato
+        difBox.className = "mt-8 bg-lime-100 text-lime-800 rounded-xl py-4 px-6 text-center max-w-md mx-auto border border-lime-200 shadow-sm transition-colors";
+        difLabel.textContent = "Economia Mensal NoKorre";
+      } else {
+        // NoKorre está mais caro que o tradicional
+        difBox.className = "mt-8 bg-red-100 text-red-800 rounded-xl py-4 px-6 text-center max-w-md mx-auto border border-red-200 shadow-sm transition-colors";
+        difLabel.textContent = "Custo Adicional NoKorre";
+      }
+    }
+
     // Inicialização
     renderCalculations();
+    renderTradicional();
   </script>
 </body>
 </html>
