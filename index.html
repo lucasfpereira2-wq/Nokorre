@@ -62,27 +62,18 @@
       <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-200 p-6 relative overflow-hidden">
         <div class="absolute top-0 left-0 w-full h-1 bg-purple-500"></div>
         <label class="block text-slate-500 font-semibold text-sm uppercase tracking-wider mb-3">
-          Selecione a Categoria
+          Categoria Automática
         </label>
         <div class="relative">
-          <select
-            id="category-select"
-            class="w-full appearance-none text-2xl font-bold text-purple-900 bg-purple-50 border border-purple-200 rounded-xl py-4 pl-4 pr-12 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all cursor-pointer"
+          <div
+            id="category-display"
+            class="w-full text-2xl font-bold text-purple-900 bg-purple-50 border border-purple-200 rounded-xl py-4 px-4 transition-all"
           >
-            <option value="Econômica" selected>ECONÔMICA</option>
-            <option value="Do Korre">DO KORRE</option>
-            <option value="Plus">PLUS</option>
-            <option value="Select">SELECT</option>
-            <option value="Elite">ELITE</option>
-          </select>
-          <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
+            ECONÔMICA
           </div>
         </div>
         <p id="category-desc" class="text-xs font-medium text-purple-600 mt-3 bg-purple-100 inline-block px-2 py-1 rounded-md">
-          Conforto e desempenho
+          Entrada, menor custo
         </p>
       </div>
 
@@ -246,14 +237,23 @@
       { months: 36, rate: 0.025 }, // 2.5% ao mês
     ];
 
+    // Função para determinar a categoria com base no valor
+    function getCategoryByValue(value) {
+      if (value <= 11000) return 'Econômica';
+      if (value <= 13500) return 'Do Korre';
+      if (value <= 15500) return 'Plus';
+      if (value <= 17500) return 'Select';
+      return 'Elite';
+    }
+
     // Estados da Aplicação
     let motoValue = 10000;
-    let category = 'Econômica';
+    let category = getCategoryByValue(motoValue);
     let motoValueTrad = 10000; // Estado específico para o Financiamento Tradicional
 
     // Elementos do DOM - Principal
     const motoInput = document.getElementById('moto-input');
-    const categorySelect = document.getElementById('category-select');
+    const categoryDisplay = document.getElementById('category-display');
     const categoryDesc = document.getElementById('category-desc');
     const mensalContainer = document.getElementById('mensal-cards');
     const semanalContainer = document.getElementById('semanal-cards');
@@ -269,14 +269,14 @@
       const num = parseInt(val, 10) / 100;
       motoValue = num;
       e.target.value = num.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-      renderCalculations();
-    });
-
-    categorySelect.addEventListener('change', (e) => {
-      category = e.target.value;
+      
+      // Atualiza a categoria automaticamente
+      category = getCategoryByValue(motoValue);
+      categoryDisplay.textContent = category.toUpperCase();
       categoryDesc.textContent = CATEGORIES[category].desc;
+
       renderCalculations();
-      renderTradicional(); // Atualiza o comparativo tradicional também
+      renderTradicional();
     });
 
     // Event Listener Tradicional
