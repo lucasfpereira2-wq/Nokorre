@@ -269,12 +269,57 @@
         }
 
         /* Responsividade */
-        @media (max-width: 480px) {
+        /* Responsividade Melhorada para Celular */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px; /* Reduz a margem preta em volta da calculadora */
+            }
+
+            .calculator-wrapper {
+                padding: 1.5rem 1rem; /* Reduz o espaço interno, dando mais área útil */
+                gap: 1.5rem;
+            }
+
+            .header h1 {
+                font-size: 1.3rem; /* Título levemente menor */
+            }
+
+            .input-field input {
+                padding: 0.8rem; /* Caixas de texto um pouco mais finas */
+                font-size: 1rem;
+            }
+
+            /* Transforma os cards de parcela em linhas (Mês de um lado, Valor do outro) */
             .installments-grid {
                 grid-template-columns: 1fr;
+                gap: 0.5rem;
             }
+
+            .installment-card {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0.8rem 1rem;
+            }
+
+            .installment-card .value {
+                margin-top: 0;
+            }
+
+            /* Deixa as comissões em uma coluna só para não encavalar os nomes */
             .commission-list {
                 grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .commission-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .commission-item strong {
+                margin-top: 0;
             }
         }
     
