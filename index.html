@@ -450,10 +450,12 @@
             const valorMoto = parseCurrency(document.getElementById('valorMoto').value);
             const valorEntrada = parseCurrency(document.getElementById('valorEntrada').value);
             const valorExcedente = parseCurrency(document.getElementById('valorExcedente').value);
-            const valorSimulado = valorFinanciado + valorExcedente;
+            
             // 2. Calcular Valor Financiado
             let valorFinanciado = valorMoto - valorEntrada ;
             if (valorFinanciado < 0) valorFinanciado = 0; // Proteção contra valores negativos
+
+            const valorSimulado = valorFinanciado + valorExcedente;
 
             document.getElementById('valorFinanciadoDisplay').innerText = formatMoney(valorFinanciado);
 
@@ -513,7 +515,13 @@ function modoCliente(){
         .classList.toggle("hidden");
 
 }
-window.onload=function(){app.style.display='none';calculateAll();}
+window.onload = function () {
+
+    document.getElementById("app").style.display = "none";
+
+    calculateAll();
+
+}
 ;
     </script>
 </div>
