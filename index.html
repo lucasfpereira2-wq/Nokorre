@@ -294,6 +294,11 @@
                     <strong id="taxaSeguro">R$ 0,00</strong>
                 </div>
             </div>
+            
+            <div class="total-costs" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--surface-light); text-align: center;">
+                <h4 style="font-size: 0.95rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 0.5rem;">Custo Total Estimado</h4>
+                <strong id="custoTotal" style="font-size: 1.6rem; color: #EAB308;">R$ 0,00</strong>
+            </div>
         </div>
     </div>
 
@@ -385,8 +390,11 @@
                 seguroMensal = valorMoto * 0.01; // 1% da moto
                 taxaAdesaoSeguro = CONFIG.taxaAdesaoSeguroFixa;
             }
+            
+            // 5. Calcular Custo Total
+            const custoTotal = comissaoExcedente + CONFIG.comissaoVendaFixa + CONFIG.comissaoMontagemFixa + CONFIG.freteFixo + comissaoSDR + seguroMensal + taxaAdesaoSeguro;
 
-            // 5. Atualizar a tela das Comissões
+            // 6. Atualizar a tela das Comissões
             document.getElementById('comExcedente').innerText = formatMoney(comissaoExcedente);
             document.getElementById('comVenda').innerText = formatMoney(CONFIG.comissaoVendaFixa);
             document.getElementById('comMontagem').innerText = formatMoney(CONFIG.comissaoMontagemFixa);
@@ -394,6 +402,8 @@
             document.getElementById('comSDR').innerText = formatMoney(comissaoSDR);
             document.getElementById('seguroMensal').innerText = formatMoney(seguroMensal);
             document.getElementById('taxaSeguro').innerText = formatMoney(taxaAdesaoSeguro);
+            
+            document.getElementById('custoTotal').innerText = formatMoney(custoTotal);
         }
 
         // Inicializa valores fixos na tela ao carregar a página
