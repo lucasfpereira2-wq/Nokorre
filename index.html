@@ -564,31 +564,65 @@
 
         // Inicializa valores fixos na tela ao carregar a página
         
-const LOGIN={usuario:"nokorre",senha:"123456"};
-function login(){
- if(usuario.value===LOGIN.usuario&&senha.value===LOGIN.senha){
-  loginScreen.style.display='none';app.style.display='block';
- }else erroLogin.innerText='Usuário ou senha inválidos.';
+// ==========================================
+// SISTEMA DE LOGIN COM SESSÃO (30 MINUTOS)
+// ==========================================
+const LOGIN = { usuario: "nokorre", senha: "123456" };
+const TEMPO_SESSAO = 30 * 60 * 1000; // 30 minutos em milissegundos
+
+// Verifica se o usuário já logou recentemente
+function verificarSessao() {
+    const tempoLogin = localStorage.getItem('nokorre_login_time');
+    
+    if (tempoLogin) {
+        const tempoPassado = Date.now() - parseInt(tempoLogin);
+        if (tempoPassado < TEMPO_SESSAO) {
+            // Renova o tempo para mais 30 minutos a cada vez que ele muda de página
+            localStorage.setItem('nokorre_login_time', Date.now()); 
+            return true; // Está logado
+        }
+    }
+    
+    // Se o tempo expirou, limpa o registro
+    localStorage.removeItem('nokorre_login_time');
+    return false; // Não está logado
 }
+
+function login() {
+    const usu = document.getElementById("usuario").value;
+    const sen = document.getElementById("senha").value;
+
+    if (usu === LOGIN.usuario && sen === LOGIN.senha) {
+        // Senha correta: Salva a hora atual no navegador
+        localStorage.setItem('nokorre_login_time', Date.now());
+        
+        // Esconde a tela de login e mostra o app
+        document.getElementById("loginScreen").style.display = 'none';
+        document.getElementById("app").style.display = 'block';
+    } else {
+        document.getElementById("erroLogin").innerText = 'Usuário ou senha inválidos.';
+    }
+}
+
 function modoCliente(){
-
-    document
-        .getElementById("campoExcedente")
-        .classList.toggle("hidden");
-
-    document
-        .getElementById("comissoes")
-        .classList.toggle("hidden");
-
+    document.getElementById("campoExcedente").classList.toggle("hidden");
+    document.getElementById("comissoes").classList.toggle("hidden");
 }
+
+// O que acontece quando a página carrega
 window.onload = function () {
-
-    document.getElementById("app").style.display = "none";
-
+    if (verificarSessao()) {
+        // Se já estiver logado, pula a tela de senha
+        document.getElementById("loginScreen").style.display = 'none';
+        document.getElementById("app").style.display = 'block';
+    } else {
+        // Se não estiver logado, mostra a tela de senha
+        document.getElementById("loginScreen").style.display = 'flex';
+        document.getElementById("app").style.display = 'none';
+    }
+    
     calculateAll();
-
-}
-;
+};
 
 async function compartilharWhatsApp() {
             // 1. Força a calculadora a ficar no "Modo Cliente" para o print
