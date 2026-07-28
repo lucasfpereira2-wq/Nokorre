@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel Seminovas - Em Breve</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/menu.css">
+
+    <style>
+        :root {
+            --primary-bg: #1A1A1A;
+            --secondary-color: #A7BF3B;
+            --surface-color: #242424;
+            --surface-light: #333333;
+            --text-main: #FFFFFF;
+            --text-muted: #9CA3AF;
+            --border-radius: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            /* Alterado para column para organizar o menu no topo e o card no centro */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center center / cover no-repeat;
+            filter: blur(6px);
+            transform: scale(1.08);
+            z-index: -2;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: -1;
+        }
+
+        /* Topbar Styles */
+        .topbar {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            /* Mais espaço abaixo do menu */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            z-index: 10;
+        }
+
+        .topbar nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .topbar a {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: .3s;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .topbar a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+
+        .topbar a.active {
+            color: var(--secondary-color);
+            background: rgba(167, 191, 59, 0.1);
+        }
+
+        /* Wrapper Principal */
+        .calculator-wrapper {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(36, 36, 36, .82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        /* Elementos da Página em Construção */
+        .construction-icon {
+            color: var(--secondary-color);
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .construction-icon svg {
+            width: 64px;
+            height: 64px;
+            /* Animação suave girando */
+            animation: spin-slow 8s linear infinite;
+        }
+
+        @keyframes spin-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .construction-content h1 {
+            color: var(--text-main);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -0.5px;
+        }
+
+        .construction-content p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            color: var(--secondary-color);
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid var(--secondary-color);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            gap: 8px;
+        }
+
+        .action-btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--primary-bg);
+            box-shadow: 0 4px 15px rgba(167, 191, 59, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade */
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .topbar nav {
+                gap: 5px;
+            }
+
+            .topbar a {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+
+            .calculator-wrapper {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .construction-content h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <topbar-menu></topbar-menu>
+
+    <!-- Card de Conteúdo -->
+    <main class="calculator-wrapper">
+
+        <div class="construction-icon">
+            <!-- Ícone de Engrenagem (SVG) -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+            </svg>
+        </div>
+
+        <div class="construction-content">
+            <h1>Em Desenvolvimento</h1>
+            <p>Nossa equipe está trabalhando nos bastidores para trazer um painel completo com as melhores opções de
+                <strong>Aluguel Seminovas</strong>. Novidades estarão disponíveis em breve.
+            </p>
+
+            <a href="../index.html" class="action-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Voltar ao Simulador
+            </a>
+        </div>
+
+    </main>
+    <script src="../js/menu.js"></script>
+
+</body>
+
+</html>

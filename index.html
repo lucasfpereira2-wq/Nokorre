@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NoKorre Web Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
+    <link rel="stylesheet" href="css/menu.css">
+
     <style>
         :root {
             --primary-bg: #1A1A1A;
@@ -339,6 +342,7 @@
 </style>
 <!-- Biblioteca para tirar print da tela -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </head>
 <body>
 
@@ -352,6 +356,10 @@
 <span id="erroLogin"></span>
 </div></div>
 <div id="app" style="display:none;">
+
+
+    <topbar-menu></topbar-menu>
+
 
 
     <div class="calculator-wrapper">
@@ -664,6 +672,7 @@ async function compartilharWhatsApp() {
         }
 
     </script>
+    <script src="js/menu.js"></script>
 </div>
 </body>
 </html>

@@ -1,0 +1,57 @@
+        /* =========================================================
+           PASSO 1: RECORTE ESTE BLOCO E COLE EM UM ARQUIVO: menu.css
+           (Depois, chame o arquivo no seu HTML usando a tag <link>)
+           ========================================================= */
+        .topbar {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+            z-index: 10;
+        }
+
+        .topbar nav {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            gap: 15px;
+        }
+
+        .topbar a {
+            /* Usamos as cores reais caso o var() não esteja disponível globalmente no shadow DOM (embora aqui esteja) */
+            color: #9CA3AF;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: .3s;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .topbar a:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #FFFFFF;
+        }
+
+        .topbar a.active {
+            color: #A7BF3B;
+            background: rgba(167, 191, 59, 0.1);
+        }
+
+        @media (max-width: 600px) {
+            .topbar nav {
+                gap: 5px;
+            }
+
+            .topbar a {
+                font-size: 12px;
+                padding: 8px 10px;
+            }
+        }
+
+        /* ==================== FIM DO MENU.CSS ==================== */
