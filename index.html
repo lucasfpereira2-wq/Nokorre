@@ -624,18 +624,28 @@ async function compartilharWhatsApp() {
                             const item = new ClipboardItem({ "image/png": blob });
                             await navigator.clipboard.write([item]);
                             
-                            alert("✅ Simulação copiada com sucesso!\n\nO WhatsApp será aberto. Basta usar Ctrl+V (Colar) na conversa com o cliente.");
-                            window.open("https://wa.me/?text=Olá! Segue a simulação do seu financiamento.", "_blank");
+                            // Cria um link fantasma e clica nele automaticamente para abrir o WhatsApp na hora
+                            const linkZap = document.createElement("a");
+                            
+                            // Se quiser tirar também o texto automático, deixe apenas: linkZap.href = "https://wa.me/";
+                            linkZap.href = "https://wa.me/?text=Olá! Segue a simulação do seu financiamento.";
+                            
+                            linkZap.target = "_blank";
+                            document.body.appendChild(linkZap);
+                            linkZap.click();
+                            document.body.removeChild(linkZap); 
+                            
+                            // O alert() que travava a tela foi removido daqui!
                             
                         } catch (err) {
-                            // 6. Fallback final: Se o navegador do PC bloquear o Clipboard, faz o download
+                            // 6. Fallback final: Se o PC bloquear a cópia, faz o download direto
                             const url = URL.createObjectURL(blob);
                             const a = document.createElement('a');
                             a.href = url;
                             a.download = 'simulacao-nokorre.png';
                             a.click();
                             
-                            alert("O print foi baixado! Anexe a imagem na conversa do WhatsApp.");
+                            // Abre o WhatsApp direto, sem o alert()
                             window.open("https://wa.me/?text=Olá! Segue a simulação do seu financiamento.", "_blank");
                         }
                     }
