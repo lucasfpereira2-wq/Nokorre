@@ -24,13 +24,22 @@
             font-family: 'Inter', sans-serif;
         }
 
-        body {
-            background-color: var(--primary-bg);
-            color: var(--text-main);
-            display: flex;
-            justify-content: center;
-            padding: 2rem 1rem;
-            min-height: 100vh;
+        body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center/cover no-repeat;
+        filter: blur(4px);
+        transform: scale(1.05);
+        z-index: -2;
+        }
+
+        body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: -1;
         }
 
         .calculator-wrapper {
