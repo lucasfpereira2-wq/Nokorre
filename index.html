@@ -237,6 +237,37 @@
             font-size: 1rem;
         }
 
+        .toggle-btn{
+
+        position:absolute;
+
+        top:20px;
+
+        right:20px;
+
+        width:35px;
+
+        height:35px;
+
+        border:none;
+
+        border-radius:50%;
+
+        background:#A7BF3B;
+
+        cursor:pointer;
+
+        font-size:18px;
+        }
+
+        .hidden{
+        display:none !important;
+        }
+
+        .header{
+        position:relative;
+        }
+
         /* Responsividade */
         @media (max-width: 480px) {
             .installments-grid {
@@ -272,6 +303,9 @@
 
     <div class="calculator-wrapper">
         <header class="header">
+            <button class="toggle-btn" onclick="modoCliente()">
+            👁
+            </button>
             <h1>Calculadora NoKorre MOTO 0KM</h1>
         </header>
 
@@ -286,7 +320,7 @@
                 <input type="text" id="valorEntrada" placeholder="0,00" oninput="maskCurrency(this); calculateAll()">
             </div>
 
-            <div class="input-field">
+            <div class="input-field" id="campoExcedente">
                 <label for="valorExcedente">Valor Excedente (R$)</label>
                 <input type="text" id="valorExcedente" placeholder="0,00" oninput="maskCurrency(this); calculateAll()">
             </div>
@@ -316,7 +350,7 @@
             <p class="disclaimer">* Simulação sujeita a análise de crédito e alteração de acordo com o banco.</p>
         </div>
 
-        <div class="commissions-section">
+        <div class="commissions-section" id="comissoes">
             <h3>Resumo Interno (Vendedor)</h3>
             <div class="commission-list">
                 <div class="commission-item">
@@ -416,17 +450,17 @@
             const valorMoto = parseCurrency(document.getElementById('valorMoto').value);
             const valorEntrada = parseCurrency(document.getElementById('valorEntrada').value);
             const valorExcedente = parseCurrency(document.getElementById('valorExcedente').value);
-
+            const valorSimulado = valorFinanciado + valorExcedente;
             // 2. Calcular Valor Financiado
-            let valorFinanciado = valorMoto - valorEntrada + valorExcedente;
+            let valorFinanciado = valorMoto - valorEntrada ;
             if (valorFinanciado < 0) valorFinanciado = 0; // Proteção contra valores negativos
 
             document.getElementById('valorFinanciadoDisplay').innerText = formatMoney(valorFinanciado);
 
             // 3. Simulação de Parcelas (24x, 36x, 48x)
-            document.getElementById('parc24').innerText = formatMoney(calcularParcelaTabelaPrice(valorFinanciado, 24));
-            document.getElementById('parc36').innerText = formatMoney(calcularParcelaTabelaPrice(valorFinanciado, 36));
-            document.getElementById('parc48').innerText = formatMoney(calcularParcelaTabelaPrice(valorFinanciado, 48));
+            document.getElementById('parc24').innerText = formatMoney(calcularParcelaTabelaPrice(valorSimulado, 24));
+            document.getElementById('parc36').innerText = formatMoney(calcularParcelaTabelaPrice(valorSimulado, 36));
+            document.getElementById('parc48').innerText = formatMoney(calcularParcelaTabelaPrice(valorSimulado, 48));
 
             // 4. Cálculos das Comissões e Taxas
             
@@ -467,6 +501,17 @@ function login(){
  if(usuario.value===LOGIN.usuario&&senha.value===LOGIN.senha){
   loginScreen.style.display='none';app.style.display='block';
  }else erroLogin.innerText='Usuário ou senha inválidos.';
+}
+function modoCliente(){
+
+    document
+        .getElementById("campoExcedente")
+        .classList.toggle("hidden");
+
+    document
+        .getElementById("comissoes")
+        .classList.toggle("hidden");
+
 }
 window.onload=function(){app.style.display='none';calculateAll();}
 ;
