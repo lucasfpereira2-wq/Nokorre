@@ -4,9 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planos Fidelidade - Em Breve</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Planos Fidelidade 30x - Nokorre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#1A1A1A',
+                            primary: '#A7BF3B',
+                            surface: '#242424',
+                            surfaceLight: '#333333',
+                            text: '#FFFFFF',
+                            muted: '#9CA3AF',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
+    <!-- Mantendo a importação original do seu menu, se houver -->
     <link rel="stylesheet" href="../css/menu.css">
 
     <style>
@@ -14,38 +39,27 @@
             --primary-bg: #1A1A1A;
             --secondary-color: #A7BF3B;
             --surface-color: #242424;
-            --surface-light: #333333;
-            --text-main: #FFFFFF;
-            --text-muted: #9CA3AF;
-            --border-radius: 12px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            margin: 0;
+            background-color: var(--primary-bg);
+            color: #ffffff;
             min-height: 100vh;
-            /* Alterado para column para organizar o menu no topo e o card no centro */
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 30px;
-            position: relative;
             overflow-x: hidden;
+            position: relative;
         }
 
+        /* Fundo desfocado com a imagem da Nokorre */
         body::before {
             content: "";
             position: fixed;
             inset: 0;
             background: url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center center / cover no-repeat;
-            filter: blur(6px);
-            transform: scale(1.08);
+            filter: blur(8px);
+            transform: scale(1.1);
             z-index: -2;
         }
 
@@ -53,197 +67,258 @@
             content: "";
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.55);
+            background: rgba(15, 15, 15, 0.75); /* Overlay escurecido para contraste */
             z-index: -1;
         }
 
-        /* Topbar Styles */
-        .topbar {
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 40px;
-            /* Mais espaço abaixo do menu */
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
-            z-index: 10;
+        /* Efeito Glassmorphism nos cards */
+        .glass-card {
+            background: rgba(36, 36, 36, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
 
-        .topbar nav {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-            gap: 15px;
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
-        .topbar a {
-            color: var(--text-muted);
-            text-decoration: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            transition: .3s;
-            text-align: center;
-            font-size: 14px;
-            font-weight: 600;
+        /* Destaque para o plano principal */
+        .card-featured {
+            border: 2px solid var(--secondary-color);
+            background: rgba(45, 50, 25, 0.6); /* Leve tom esverdeado no fundo */
+            box-shadow: 0 10px 30px rgba(167, 191, 59, 0.15);
         }
 
-        .topbar a:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-main);
+        .card-featured:hover {
+            box-shadow: 0 20px 50px rgba(167, 191, 59, 0.25);
+            border-color: #b8d241;
         }
 
-        .topbar a.active {
-            color: var(--secondary-color);
-            background: rgba(167, 191, 59, 0.1);
-        }
-
-        /* Wrapper Principal */
-        .calculator-wrapper {
-            width: 100%;
-            max-width: 520px;
-            background: rgba(36, 36, 36, .82);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, .08);
-            border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
-            padding: 3rem 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            text-align: center;
-            margin-top: auto;
-            margin-bottom: auto;
-        }
-
-        /* Elementos da Página em Construção */
-        .construction-icon {
-            color: var(--secondary-color);
-            display: flex;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .construction-icon svg {
-            width: 64px;
-            height: 64px;
-            /* Animação suave girando */
-            animation: spin-slow 8s linear infinite;
-        }
-
-        @keyframes spin-slow {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .construction-content h1 {
-            color: var(--text-main);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.5px;
-        }
-
-        .construction-content p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-        }
-
-        .action-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: transparent;
-            color: var(--secondary-color);
-            text-decoration: none;
-            padding: 12px 24px;
-            border: 1px solid var(--secondary-color);
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            gap: 8px;
-        }
-
-        .action-btn:hover {
+        /* Notificação Toast Customizada */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
             background-color: var(--secondary-color);
-            color: var(--primary-bg);
-            box-shadow: 0 4px 15px rgba(167, 191, 59, 0.3);
-            transform: translateY(-2px);
+            color: #1A1A1A;
+            text-align: center;
+            border-radius: 8px;
+            padding: 12px 24px;
+            position: fixed;
+            z-index: 50;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            opacity: 0;
+            transition: opacity 0.3s, bottom 0.3s, visibility 0.3s;
         }
 
-        /* Responsividade */
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-
-            .topbar nav {
-                gap: 5px;
-            }
-
-            .topbar a {
-                font-size: 12px;
-                padding: 8px 10px;
-            }
-
-            .calculator-wrapper {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .construction-content h1 {
-                font-size: 1.5rem;
-            }
+        #toast.show {
+            visibility: visible;
+            opacity: 1;
+            bottom: 50px;
         }
     </style>
 </head>
 
-<body>
+<body class="py-10 px-4 md:px-8">
 
+    <!-- Topbar Placeholder (Mantendo a estrutura do seu projeto original) -->
     <topbar-menu></topbar-menu>
 
-    <!-- Card de Conteúdo -->
-    <main class="calculator-wrapper">
+    <div class="w-full max-w-6xl mx-auto flex flex-col items-center mt-6 mb-12 text-center">
+        <span class="text-brand-primary font-bold tracking-wider uppercase text-sm mb-2 px-3 py-1 bg-brand-primary/10 rounded-full border border-brand-primary/20">
+            Fidelidade 30x
+        </span>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+            Planos de Aluguel + Aquisição
+        </h1>
+        <p class="text-brand-muted max-w-2xl text-base md:text-lg">
+            Apresente as melhores condições para seus clientes. Todos os planos abaixo contemplam o prazo de fidelidade de 30 meses.
+        </p>
+    </div>
 
-        <div class="construction-icon">
-            <!-- Ícone de Engrenagem (SVG) -->
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="3"></circle>
-                <path
-                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
-                </path>
-            </svg>
+    <main class="w-full max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-center">
+        
+        <!-- PLANO 1: ECONOMICA -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col relative h-full">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-white uppercase tracking-wide">Econômica</h2>
+                <p class="text-brand-muted text-sm mt-1">O acesso mais acessível</p>
+            </div>
+
+            <div class="mb-6 pb-6 border-b border-white/10 flex-grow">
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-brand-muted text-lg font-medium mb-1">R$</span>
+                    <span class="text-4xl lg:text-5xl font-extrabold text-white">400</span>
+                    <span class="text-brand-muted text-lg font-medium mb-1">,00</span>
+                </div>
+                <span class="text-sm font-semibold text-brand-muted uppercase tracking-wider">Por Semana</span>
+            </div>
+
+            <div class="flex flex-col gap-4 mb-8">
+                <div class="flex justify-between items-center">
+                    <span class="text-brand-muted">Valor Final (Mês)</span>
+                    <span class="text-white font-semibold text-lg">R$ 1.600,00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-brand-muted">Valor Venda</span>
+                    <span class="text-brand-muted font-medium">R$ 14.990,00</span>
+                </div>
+            </div>
+
+            <button onclick="copyToClipboard('Econômica', '400,00', '1.600,00', '14.990,00')" 
+                    class="mt-auto w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 bg-white/5 text-white hover:bg-white/10 border border-white/10 flex items-center justify-center gap-2 group">
+                <svg class="w-5 h-5 text-brand-muted group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copiar para WhatsApp
+            </button>
         </div>
 
-        <div class="construction-content">
-            <h1>Em Desenvolvimento</h1>
-            <p>Nossa equipe está trabalhando nos bastidores para trazer um painel completo com as melhores opções de
-                <strong>Planos Fidelidade</strong>. Novidades estarão disponíveis em breve.
-            </p>
+        <!-- PLANO 2: NOKORRE (DESTAQUE) -->
+        <div class="glass-card card-featured rounded-2xl p-6 md:p-8 flex flex-col relative h-full md:scale-105 z-10">
+            <!-- Badge Recomendado -->
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-brand-primary text-brand-bg font-bold px-4 py-1 rounded-full text-xs uppercase tracking-widest shadow-lg">
+                Mais Escolhido
+            </div>
 
-            <a href="../index.html" class="action-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Voltar ao Simulador
-            </a>
+            <div class="mb-6 mt-2">
+                <h2 class="text-2xl font-black text-brand-primary uppercase tracking-wide">Nokorre</h2>
+                <p class="text-brand-muted text-sm mt-1">O equilíbrio perfeito de custo-benefício</p>
+            </div>
+
+            <div class="mb-6 pb-6 border-b border-brand-primary/20 flex-grow">
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-brand-primary/80 text-xl font-bold mb-1">R$</span>
+                    <span class="text-5xl lg:text-6xl font-black text-white">500</span>
+                    <span class="text-brand-primary/80 text-xl font-bold mb-1">,00</span>
+                </div>
+                <span class="text-sm font-bold text-brand-primary uppercase tracking-wider">Por Semana</span>
+            </div>
+
+            <div class="flex flex-col gap-4 mb-8">
+                <div class="flex justify-between items-center bg-black/20 p-3 rounded-lg">
+                    <span class="text-white/80 font-medium">Valor Final (Mês)</span>
+                    <span class="text-white font-bold text-xl">R$ 2.000,00</span>
+                </div>
+                <div class="flex justify-between items-center px-3">
+                    <span class="text-brand-muted">Valor Venda</span>
+                    <span class="text-brand-muted font-medium">R$ 17.990,00</span>
+                </div>
+            </div>
+
+            <button onclick="copyToClipboard('Nokorre', '500,00', '2.000,00', '17.990,00')" 
+                    class="mt-auto w-full py-4 px-4 rounded-xl font-bold transition-all duration-300 bg-brand-primary text-brand-bg hover:bg-[#b8d241] shadow-[0_0_20px_rgba(167,191,59,0.3)] hover:shadow-[0_0_30px_rgba(167,191,59,0.5)] flex items-center justify-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copiar para WhatsApp
+            </button>
+        </div>
+
+        <!-- PLANO 3: ELITE -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col relative h-full">
+            <div class="mb-6">
+                <h2 class="text-xl font-bold text-white uppercase tracking-wide">Elite</h2>
+                <p class="text-brand-muted text-sm mt-1">Para quem busca categoria superior</p>
+            </div>
+
+            <div class="mb-6 pb-6 border-b border-white/10 flex-grow">
+                <div class="flex items-end gap-1 mb-1">
+                    <span class="text-brand-muted text-lg font-medium mb-1">R$</span>
+                    <span class="text-4xl lg:text-5xl font-extrabold text-white">625</span>
+                    <span class="text-brand-muted text-lg font-medium mb-1">,00</span>
+                </div>
+                <span class="text-sm font-semibold text-brand-muted uppercase tracking-wider">Por Semana</span>
+            </div>
+
+            <div class="flex flex-col gap-4 mb-8">
+                <div class="flex justify-between items-center">
+                    <span class="text-brand-muted">Valor Final (Mês)</span>
+                    <span class="text-white font-semibold text-lg">R$ 2.500,00</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-brand-muted">Valor Venda</span>
+                    <span class="text-brand-muted font-medium">R$ 21.990,00</span>
+                </div>
+            </div>
+
+            <button onclick="copyToClipboard('Elite', '625,00', '2.500,00', '21.990,00')" 
+                    class="mt-auto w-full py-3 px-4 rounded-xl font-semibold transition-all duration-300 bg-white/5 text-white hover:bg-white/10 border border-white/10 flex items-center justify-center gap-2 group">
+                <svg class="w-5 h-5 text-brand-muted group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                Copiar para WhatsApp
+            </button>
         </div>
 
     </main>
+
+    <!-- Toast Message -->
+    <div id="toast">Resumo copiado com sucesso!</div>
+
+    <!-- Script de Funcionalidades -->
     <script src="../js/menu.js"></script>
+    <script>
+        /**
+         * Função para formatar e copiar os dados do plano direto para a área de transferência,
+         * ideal para o vendedor enviar ao cliente via WhatsApp.
+         */
+        function copyToClipboard(plano, semana, mes, venda) {
+            const textoParaCopiar = 
+`*PLANO ${plano.toUpperCase()}* 🚗
+Fidelidade: 30 meses
 
+*Valor Semanal:* R$ ${semana}
+*Valor Mensal:* R$ ${mes}
+
+_(Ref. Valor Venda: R$ ${venda})_
+
+Me avise se tiver alguma dúvida para fecharmos negócio!`;
+
+            // Utilizando a API moderna do Clipboard com fallback
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(textoParaCopiar).then(() => {
+                    showToast();
+                }).catch(err => {
+                    fallbackCopyTextToClipboard(textoParaCopiar);
+                });
+            } else {
+                fallbackCopyTextToClipboard(textoParaCopiar);
+            }
+        }
+
+        // Fallback seguro para iFrames ou navegadores antigos
+        function fallbackCopyTextToClipboard(text) {
+            var textArea = document.createElement("textarea");
+            textArea.value = text;
+            
+            // Evita scroll na tela
+            textArea.style.top = "0";
+            textArea.style.left = "0";
+            textArea.style.position = "fixed";
+
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                if(successful) showToast();
+            } catch (err) {
+                console.error('Fallback: Oops, unable to copy', err);
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Função para mostrar notificação de sucesso
+        function showToast() {
+            var toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ 
+                toast.className = toast.className.replace("show", ""); 
+            }, 3000);
+        }
+    </script>
 </body>
-
 </html>
