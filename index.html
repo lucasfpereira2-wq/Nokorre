@@ -24,14 +24,31 @@
             font-family: 'Inter', sans-serif;
         }
 
-        body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center/cover no-repeat;
-        filter: blur(4px);
-        transform: scale(1.05);
-        z-index: -2;
+        body{
+        margin:0;
+        min-height:100vh;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        padding:30px;
+
+        position:relative;
+        overflow-x:hidden;
+        }
+
+        body::before{
+        content:"";
+        position:fixed;
+        inset:0;
+
+        background:url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center center / cover no-repeat;
+
+        filter:blur(6px);
+        transform:scale(1.08);
+
+        z-index:-2;
         }
 
         body::after {
@@ -43,15 +60,23 @@
         }
 
         .calculator-wrapper {
-            background-color: var(--surface-color);
-            width: 100%;
-            max-width: 500px;
-            border-radius: var(--border-radius);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            padding: 2rem;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
+        width: 100%;
+        max-width: 520px;
+
+        background: rgba(36,36,36,.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        border: 1px solid rgba(255,255,255,.08);
+        border-radius: 16px;
+
+        box-shadow: 0 20px 60px rgba(0,0,0,.45);
+
+        padding: 2rem;
+
+        display:flex;
+        flex-direction:column;
+        gap:2rem;
         }
 
         .header {
