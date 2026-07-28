@@ -246,9 +246,29 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+    
+.login-screen{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;z-index:999}
+.login-box{width:350px;background:rgba(36,36,36,.9);backdrop-filter:blur(12px);padding:35px;border-radius:15px;text-align:center;border:1px solid rgba(255,255,255,.08)}
+.login-box input,.login-box button{width:100%;padding:14px;margin-top:12px;border-radius:8px}
+.login-box input{background:#1a1a1a;color:#fff;border:none}
+.login-box button{background:#A7BF3B;border:none;font-weight:bold;cursor:pointer}
+#erroLogin{display:block;color:#ff6666;margin-top:10px}
+
+</style>
 </head>
 <body>
+
+<div id="loginScreen" class="login-screen">
+<div class="login-box">
+<h2>Calculadora NoKorre</h2>
+<p>Faça login para continuar</p>
+<input type="text" id="usuario" placeholder="Usuário">
+<input type="password" id="senha" placeholder="Senha">
+<button onclick="login()">Entrar</button>
+<span id="erroLogin"></span>
+</div></div>
+<div id="app" style="display:none;">
+
 
     <div class="calculator-wrapper">
         <header class="header">
@@ -441,9 +461,16 @@
         }
 
         // Inicializa valores fixos na tela ao carregar a página
-        window.onload = function() {
-            calculateAll();
-        };
+        
+const LOGIN={usuario:"nokorre",senha:"123456"};
+function login(){
+ if(usuario.value===LOGIN.usuario&&senha.value===LOGIN.senha){
+  loginScreen.style.display='none';app.style.display='block';
+ }else erroLogin.innerText='Usuário ou senha inválidos.';
+}
+window.onload=function(){app.style.display='none';calculateAll();}
+;
     </script>
+</div>
 </body>
 </html>
