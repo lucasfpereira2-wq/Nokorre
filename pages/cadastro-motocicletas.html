@@ -76,22 +76,62 @@ button{padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-weigh
 </div>
 <script src="../js/menu.js"></script>
 <script type="module">
-    // Importa a sua conexão já configurada com o Supabase
     import { supabase } from '../js/auth.js';
 
-    document.getElementById("formMoto").addEventListener("submit", async (e) => {
-        e.preventDefault(); // Impede a página de recarregar
+    // ==========================================
+    // 1. CARREGAR LOJAS (Ao abrir a página)
+    // ==========================================
+    async function carregarLojas() {
+        const selectLoja = document.getElementById('loja_id');
+        selectLoja.innerHTML = '<option value="">Carregando lojas...</option>';
 
-        // 1. Muda o texto do botão para dar feedback ao usuário
+        // Puxa o ID e o Nome da tabela 'lojas'
+        const { data: lojas, error } = await supabase
+            .from('lojas')
+            .select('id, nome'); // Se a sua coluna de nome for diferente (ex: nome_loja), mude aqui!
+
+        if (error) {
+            console.error("Erro ao buscar lojas:", error);
+            selectLoja.innerHTML = '<option value="">Erro ao carregar lojas</option>';
+            return;
+        }
+
+        // Limpa e cria a opção padrão
+        selectLoja.innerHTML = '<option value="">Selecione uma loja...</option>';
+
+        // Preenche o Select com as lojas que vieram do banco
+        lojas.forEach(loja => {
+            const option = document.createElement('option');
+            option.value = loja.id; // O valor que vai ser salvo na moto (ID da loja)
+            option.textContent = loja.nome; // O texto que o usuário vê (Nome da loja)
+            selectLoja.appendChild(option);
+        });
+    }
+
+    // Executa a função assim que a tela abre
+    carregarLojas();
+
+
+    // ==========================================
+    // 2. SALVAR MOTOCICLETA (Ao enviar o formulário)
+    // ==========================================
+    document.getElementById("formMoto").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Verifica se o usuário realmente escolheu uma loja
+        const lojaEscolhida = document.getElementById('loja_id').value;
+        if (!lojaEscolhida) {
+            alert("Por favor, selecione uma loja!");
+            return;
+        }
+
         const btnSave = document.querySelector(".save");
         const btnOriginalText = btnSave.innerText;
         btnSave.innerText = "Salvando...";
         btnSave.disabled = true;
 
-        // 2. Coleta e formata os dados do formulário
-        // Usamos parseInt e parseFloat para garantir que números sejam enviados como números, não como texto
         const novaMoto = {
-            loja_id: document.getElementById('loja_id').value, // Descomente quando configurar as lojas
+            loja_id: parseInt(lojaEscolhida), // AGORA ESTÁ DESCOMENTADO E FUNCIONANDO!
             codigo: document.getElementById('codigo').value,
             marca: document.getElementById('marca').value,
             modelo: document.getElementById('modelo').value,
@@ -114,30 +154,28 @@ button{padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-weigh
             observacoes: document.getElementById('obs').value 
         };
 
-        // (Opcional) Remove campos vazios para não dar conflito no banco
         Object.keys(novaMoto).forEach(key => {
             if (novaMoto[key] === null || novaMoto[key] === '') {
                 delete novaMoto[key];
             }
         });
 
-        // 3. Envia os dados para a tabela no Supabase
-        // ATENÇÃO: Substitua 'motocicletas' pelo nome real da sua tabela no Supabase
+        // Envia para a tabela motocicletas
         const { data, error } = await supabase
             .from('motocicletas')
             .insert([novaMoto]);
 
-        // 4. Restaura o botão
         btnSave.innerText = btnOriginalText;
         btnSave.disabled = false;
 
-        // 5. Trata o Sucesso ou Erro
         if (error) {
             console.error("Erro ao salvar:", error);
-            alert("Erro ao salvar a motocicleta: " + error.message);
+            alert("Erro ao salvar: " + error.message);
         } else {
             alert("Motocicleta cadastrada com sucesso!");
-            document.getElementById("formMoto").reset(); // Limpa o formulário para o próximo cadastro
+            document.getElementById("formMoto").reset();
+            // Volta o select para a opção padrão
+            document.getElementById('loja_id').value = "";
         }
     });
 </script>
