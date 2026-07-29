@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cadastro de Motocicletas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/menu.css">
+<style>
+:root{
+--primary-bg:#1A1A1A;--secondary:#A7BF3B;--surface:rgba(36,36,36,.82);
+--text:#fff;--muted:#9CA3AF;
+}
+*{box-sizing:border-box;font-family:Inter,sans-serif}
+body{margin:0;padding:30px;color:var(--text)}
+body:before{content:"";position:fixed;inset:0;background:url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center/cover;filter:blur(6px);transform:scale(1.08);z-index:-2}
+body:after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:-1}
+.container{max-width:900px;margin:40px auto;background:var(--surface);backdrop-filter:blur(12px);padding:30px;border-radius:16px}
+h1{margin-top:0}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.field{display:flex;flex-direction:column}
+label{margin-bottom:6px;color:var(--muted);font-size:14px}
+input,select,textarea{padding:12px;border-radius:8px;border:1px solid #444;background:#2f2f2f;color:#fff}
+textarea{grid-column:1/-1;min-height:120px}
+.actions{margin-top:24px;display:flex;justify-content:flex-end;gap:12px}
+button{padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
+.cancel{background:#444;color:#fff}
+.save{background:var(--secondary);color:#111}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+</style>
+<script type="module" src="../js/protecao.js"></script>
+</head>
+<body>
+<topbar-menu></topbar-menu>
+<div class="container">
+<h1>🏍️ Cadastro de Motocicletas</h1>
+<p>Cadastro da frota da NuKorre.</p>
+
+<form id="formMoto">
+<div class="grid">
+<div class="field"><label>Loja</label><select id="loja_id"></select></div>
+<div class="field"><label>Código</label><input id="codigo"></div>
+<div class="field"><label>Marca</label><input id="marca"></div>
+<div class="field"><label>Modelo</label><input id="modelo"></div>
+<div class="field"><label>Versão</label><input id="versao"></div>
+<div class="field"><label>Placa</label><input id="placa"></div>
+<div class="field"><label>Chassi</label><input id="chassi"></div>
+<div class="field"><label>Renavam</label><input id="renavam"></div>
+<div class="field"><label>Ano Fabricação</label><input type="number" id="ano_fabricacao"></div>
+<div class="field"><label>Ano Modelo</label><input type="number" id="ano_modelo"></div>
+<div class="field"><label>Cor</label><input id="cor"></div>
+<div class="field"><label>Cilindrada</label><input type="number" id="cilindrada"></div>
+<div class="field"><label>Categoria</label><input id="categoria"></div>
+<div class="field"><label>Combustível</label><input id="combustivel"></div>
+<div class="field"><label>Câmbio</label><input id="cambio"></div>
+<div class="field"><label>Quilometragem</label><input type="number" id="quilometragem"></div>
+<div class="field"><label>Valor Compra</label><input type="number" step="0.01" id="valor_compra"></div>
+<div class="field"><label>Valor FIPE</label><input type="number" step="0.01" id="valor_fipe"></div>
+<div class="field"><label>Valor Locação</label><input type="number" step="0.01" id="valor_locacao"></div>
+<div class="field"><label>Status</label>
+<select id="status">
+<option>Disponível</option>
+<option>Reservada</option>
+<option>Alugada</option>
+<option>Em Manutenção</option>
+<option>Vendida</option>
+</select></div>
+<div class="field" style="grid-column:1/-1"><label>Observações</label><textarea id="obs"></textarea></div>
+</div>
+<div class="actions">
+<button type="reset" class="cancel">Cancelar</button>
+<button type="submit" class="save">Salvar Motocicleta</button>
+</div>
+</form>
+</div>
+<script src="../js/menu.js"></script>
+<script type="module">
+    // Importa a sua conexão já configurada com o Supabase
+    import { supabase } from '../js/auth.js';
+
+    document.getElementById("formMoto").addEventListener("submit", async (e) => {
+        e.preventDefault(); // Impede a página de recarregar
+
+        // 1. Muda o texto do botão para dar feedback ao usuário
+        const btnSave = document.querySelector(".save");
+        const btnOriginalText = btnSave.innerText;
+        btnSave.innerText = "Salvando...";
+        btnSave.disabled = true;
+
+        // 2. Coleta e formata os dados do formulário
+        // Usamos parseInt e parseFloat para garantir que números sejam enviados como números, não como texto
+        const novaMoto = {
+            // loja_id: document.getElementById('loja_id').value, // Descomente quando configurar as lojas
+            codigo: document.getElementById('codigo').value,
+            marca: document.getElementById('marca').value,
+            modelo: document.getElementById('modelo').value,
+            versao: document.getElementById('versao').value,
+            placa: document.getElementById('placa').value,
+            chassi: document.getElementById('chassi').value,
+            renavam: document.getElementById('renavam').value,
+            ano_fabricacao: parseInt(document.getElementById('ano_fabricacao').value) || null,
+            ano_modelo: parseInt(document.getElementById('ano_modelo').value) || null,
+            cor: document.getElementById('cor').value,
+            cilindrada: parseInt(document.getElementById('cilindrada').value) || null,
+            categoria: document.getElementById('categoria').value,
+            combustivel: document.getElementById('combustivel').value,
+            cambio: document.getElementById('cambio').value,
+            quilometragem: parseInt(document.getElementById('quilometragem').value) || null,
+            valor_compra: parseFloat(document.getElementById('valor_compra').value) || null,
+            valor_fipe: parseFloat(document.getElementById('valor_fipe').value) || null,
+            valor_locacao: parseFloat(document.getElementById('valor_locacao').value) || null,
+            status: document.getElementById('status').value,
+            observacoes: document.getElementById('obs').value 
+        };
+
+        // (Opcional) Remove campos vazios para não dar conflito no banco
+        Object.keys(novaMoto).forEach(key => {
+            if (novaMoto[key] === null || novaMoto[key] === '') {
+                delete novaMoto[key];
+            }
+        });
+
+        // 3. Envia os dados para a tabela no Supabase
+        // ATENÇÃO: Substitua 'motocicletas' pelo nome real da sua tabela no Supabase
+        const { data, error } = await supabase
+            .from('motocicletas')
+            .insert([novaMoto]);
+
+        // 4. Restaura o botão
+        btnSave.innerText = btnOriginalText;
+        btnSave.disabled = false;
+
+        // 5. Trata o Sucesso ou Erro
+        if (error) {
+            console.error("Erro ao salvar:", error);
+            alert("Erro ao salvar a motocicleta: " + error.message);
+        } else {
+            alert("Motocicleta cadastrada com sucesso!");
+            document.getElementById("formMoto").reset(); // Limpa o formulário para o próximo cadastro
+        }
+    });
+</script>
+</body>
+</html>
