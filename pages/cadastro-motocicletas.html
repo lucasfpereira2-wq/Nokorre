@@ -1,183 +1,280 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadastro de Motocicletas</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../css/menu.css">
-<style>
-:root{
---primary-bg:#1A1A1A;--secondary:#A7BF3B;--surface:rgba(36,36,36,.82);
---text:#fff;--muted:#9CA3AF;
-}
-*{box-sizing:border-box;font-family:Inter,sans-serif}
-body{margin:0;padding:30px;color:var(--text)}
-body:before{content:"";position:fixed;inset:0;background:url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center/cover;filter:blur(6px);transform:scale(1.08);z-index:-2}
-body:after{content:"";position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:-1}
-.container{max-width:900px;margin:40px auto;background:var(--surface);backdrop-filter:blur(12px);padding:30px;border-radius:16px}
-h1{margin-top:0}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.field{display:flex;flex-direction:column}
-label{margin-bottom:6px;color:var(--muted);font-size:14px}
-input,select,textarea{padding:12px;border-radius:8px;border:1px solid #444;background:#2f2f2f;color:#fff}
-textarea{grid-column:1/-1;min-height:120px}
-.actions{margin-top:24px;display:flex;justify-content:flex-end;gap:12px}
-button{padding:12px 24px;border-radius:8px;border:none;cursor:pointer;font-weight:600}
-.cancel{background:#444;color:#fff}
-.save{background:var(--secondary);color:#111}
-@media(max-width:700px){.grid{grid-template-columns:1fr}}
-</style>
-<script type="module" src="../js/protecao.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Motocicletas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/menu.css">
+    <style>
+        :root {
+            --primary-bg: #1A1A1A;
+            --secondary: #A7BF3B;
+            --surface: rgba(36, 36, 36, .82);
+            --text: #fff;
+            --muted: #9CA3AF;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: Inter, sans-serif
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            color: var(--text)
+        }
+
+        body:before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center/cover;
+            filter: blur(6px);
+            transform: scale(1.08);
+            z-index: -2
+        }
+
+        body:after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .55);
+            z-index: -1
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            padding: 30px;
+            border-radius: 16px
+        }
+
+        h1 {
+            margin-top: 0
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column
+        }
+
+        label {
+            margin-bottom: 6px;
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #2f2f2f;
+            color: #fff
+        }
+
+        textarea {
+            grid-column: 1/-1;
+            min-height: 120px
+        }
+
+        .actions {
+            margin-top: 24px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .cancel {
+            background: #444;
+            color: #fff
+        }
+
+        .save {
+            background: var(--secondary);
+            color: #111
+        }
+
+        @media(max-width:700px) {
+            .grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+    <script type="module" src="../js/protecao.js"></script>
 </head>
+
 <body>
-<topbar-menu></topbar-menu>
-<div class="container">
-<h1>🏍️ Cadastro de Motocicletas</h1>
-<p>Cadastro da frota da NoKorre.</p>
+    <topbar-menu></topbar-menu>
+    <div class="container">
+        <h1>🏍️ Cadastro de Motocicletas</h1>
+        <p>Cadastro da frota da NuKorre.</p>
 
-<form id="formMoto">
-<div class="grid">
-<div class="field"><label>Loja</label><select id="loja_id"></select></div>
-<div class="field"><label>Código</label><input id="codigo"></div>
-<div class="field"><label>Marca</label><input id="marca"></div>
-<div class="field"><label>Modelo</label><input id="modelo"></div>
-<div class="field"><label>Versão</label><input id="versao"></div>
-<div class="field"><label>Placa</label><input id="placa"></div>
-<div class="field"><label>Chassi</label><input id="chassi"></div>
-<div class="field"><label>Renavam</label><input id="renavam"></div>
-<div class="field"><label>Ano Fabricação</label><input type="number" id="ano_fabricacao"></div>
-<div class="field"><label>Ano Modelo</label><input type="number" id="ano_modelo"></div>
-<div class="field"><label>Cor</label><input id="cor"></div>
-<div class="field"><label>Cilindrada</label><input type="number" id="cilindrada"></div>
-<div class="field"><label>Categoria</label><input id="categoria"></div>
-<div class="field"><label>Combustível</label><input id="combustivel"></div>
-<div class="field"><label>Câmbio</label><input id="cambio"></div>
-<div class="field"><label>Quilometragem</label><input type="number" id="quilometragem"></div>
-<div class="field"><label>Valor Compra</label><input type="number" step="0.01" id="valor_compra"></div>
-<div class="field"><label>Valor FIPE</label><input type="number" step="0.01" id="valor_fipe"></div>
-<div class="field"><label>Valor Locação</label><input type="number" step="0.01" id="valor_locacao"></div>
-<div class="field"><label>Status</label>
-<select id="status">
-<option>Disponível</option>
-<option>Reservada</option>
-<option>Alugada</option>
-<option>Em Manutenção</option>
-<option>Vendida</option>
-</select></div>
-<div class="field" style="grid-column:1/-1"><label>Observações</label><textarea id="obs"></textarea></div>
-</div>
-<div class="actions">
-<button type="reset" class="cancel">Cancelar</button>
-<button type="submit" class="save">Salvar Motocicleta</button>
-</div>
-</form>
-</div>
-<script src="../js/menu.js"></script>
-<script type="module">
-    import { supabase } from '../js/auth.js';
+        <form id="formMoto">
+            <div class="grid">
+                <div class="field"><label>Loja</label><select id="loja_id"></select></div>
+                <div class="field"><label>Código</label><input id="codigo"></div>
+                <div class="field"><label>Marca</label><input id="marca"></div>
+                <div class="field"><label>Modelo</label><input id="modelo"></div>
+                <div class="field"><label>Versão</label><input id="versao"></div>
+                <div class="field"><label>Placa</label><input id="placa"></div>
+                <div class="field"><label>Chassi</label><input id="chassi"></div>
+                <div class="field"><label>Renavam</label><input id="renavam"></div>
+                <div class="field"><label>Ano Fabricação</label><input type="number" id="ano_fabricacao"></div>
+                <div class="field"><label>Ano Modelo</label><input type="number" id="ano_modelo"></div>
+                <div class="field"><label>Cor</label><input id="cor"></div>
+                <div class="field"><label>Cilindrada</label><input type="number" id="cilindrada"></div>
+                <div class="field"><label>Categoria</label><input id="categoria"></div>
+                <div class="field"><label>Combustível</label><input id="combustivel"></div>
+                <div class="field"><label>Câmbio</label><input id="cambio"></div>
+                <div class="field"><label>Quilometragem</label><input type="number" id="quilometragem"></div>
+                <div class="field"><label>Valor Compra</label><input type="number" step="0.01" id="valor_compra"></div>
+                <div class="field"><label>Valor FIPE</label><input type="number" step="0.01" id="valor_fipe"></div>
+                <div class="field"><label>Valor Locação</label><input type="number" step="0.01" id="valor_locacao">
+                </div>
+                <div class="field"><label>Status</label>
+                    <select id="status">
+                        <option>Disponível</option>
+                        <option>Reservada</option>
+                        <option>Alugada</option>
+                        <option>Em Manutenção</option>
+                        <option>Vendida</option>
+                    </select>
+                </div>
+                <div class="field" style="grid-column:1/-1"><label>Observações</label><textarea id="obs"></textarea>
+                </div>
+            </div>
+            <div class="actions">
+                <button type="reset" class="cancel">Cancelar</button>
+                <button type="submit" class="save">Salvar Motocicleta</button>
+            </div>
+        </form>
+    </div>
+    <script src="../js/menu.js"></script>
+    <script type="module">
+        import { supabase } from '../js/auth.js';
 
-    // ==========================================
-    // 1. CARREGAR LOJAS (Ao abrir a página)
-    // ==========================================
-    async function carregarLojas() {
-        const selectLoja = document.getElementById('loja_id');
-        selectLoja.innerHTML = '<option value="">Carregando lojas...</option>';
+        // ==========================================
+        // 1. CARREGAR LOJAS (Ao abrir a página)
+        // ==========================================
+        async function carregarLojas() {
+            const selectLoja = document.getElementById('loja_id');
+            selectLoja.innerHTML = '<option value="">Carregando lojas...</option>';
 
-        // Puxa o ID e o Nome da tabela 'lojas'
-        const { data: lojas, error } = await supabase
-            .from('lojas')
-            .select('id, nome'); // Se a sua coluna de nome for diferente (ex: nome_loja), mude aqui!
+            // Puxa o ID e o Nome da tabela 'lojas'
+            const { data: lojas, error } = await supabase
+                .from('lojas')
+                .select('id, nome'); // Se a sua coluna de nome for diferente (ex: nome_loja), mude aqui!
 
-        if (error) {
-            console.error("Erro ao buscar lojas:", error);
-            selectLoja.innerHTML = '<option value="">Erro ao carregar lojas</option>';
-            return;
+            if (error) {
+                console.error("Erro ao buscar lojas:", error);
+                selectLoja.innerHTML = '<option value="">Erro ao carregar lojas</option>';
+                return;
+            }
+
+            // Limpa e cria a opção padrão
+            selectLoja.innerHTML = '<option value="">Selecione uma loja...</option>';
+
+            // Preenche o Select com as lojas que vieram do banco
+            lojas.forEach(loja => {
+                const option = document.createElement('option');
+                option.value = loja.id; // O valor que vai ser salvo na moto (ID da loja)
+                option.textContent = loja.nome; // O texto que o usuário vê (Nome da loja)
+                selectLoja.appendChild(option);
+            });
         }
 
-        // Limpa e cria a opção padrão
-        selectLoja.innerHTML = '<option value="">Selecione uma loja...</option>';
-
-        // Preenche o Select com as lojas que vieram do banco
-        lojas.forEach(loja => {
-            const option = document.createElement('option');
-            option.value = loja.id; // O valor que vai ser salvo na moto (ID da loja)
-            option.textContent = loja.nome; // O texto que o usuário vê (Nome da loja)
-            selectLoja.appendChild(option);
-        });
-    }
-
-    // Executa a função assim que a tela abre
-    carregarLojas();
+        // Executa a função assim que a tela abre
+        carregarLojas();
 
 
-    // ==========================================
-    // 2. SALVAR MOTOCICLETA (Ao enviar o formulário)
-    // ==========================================
-    document.getElementById("formMoto").addEventListener("submit", async (e) => {
-        e.preventDefault();
+        // ==========================================
+        // 2. SALVAR MOTOCICLETA (Ao enviar o formulário)
+        // ==========================================
+        document.getElementById("formMoto").addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-        // Verifica se o usuário realmente escolheu uma loja
-        const lojaEscolhida = document.getElementById('loja_id').value;
-        if (!lojaEscolhida) {
-            alert("Por favor, selecione uma loja!");
-            return;
-        }
+            // Verifica se o usuário realmente escolheu uma loja
+            const lojaEscolhida = document.getElementById('loja_id').value;
+            if (!lojaEscolhida) {
+                alert("Por favor, selecione uma loja!");
+                return;
+            }
 
-        const btnSave = document.querySelector(".save");
-        const btnOriginalText = btnSave.innerText;
-        btnSave.innerText = "Salvando...";
-        btnSave.disabled = true;
+            const btnSave = document.querySelector(".save");
+            const btnOriginalText = btnSave.innerText;
+            btnSave.innerText = "Salvando...";
+            btnSave.disabled = true;
 
-        const novaMoto = {
-            loja_id: parseInt(lojaEscolhida), // AGORA ESTÁ DESCOMENTADO E FUNCIONANDO!
-            codigo: document.getElementById('codigo').value,
-            marca: document.getElementById('marca').value,
-            modelo: document.getElementById('modelo').value,
-            versao: document.getElementById('versao').value,
-            placa: document.getElementById('placa').value,
-            chassi: document.getElementById('chassi').value,
-            renavam: document.getElementById('renavam').value,
-            ano_fabricacao: parseInt(document.getElementById('ano_fabricacao').value) || null,
-            ano_modelo: parseInt(document.getElementById('ano_modelo').value) || null,
-            cor: document.getElementById('cor').value,
-            cilindrada: parseInt(document.getElementById('cilindrada').value) || null,
-            categoria: document.getElementById('categoria').value,
-            combustivel: document.getElementById('combustivel').value,
-            cambio: document.getElementById('cambio').value,
-            quilometragem: parseInt(document.getElementById('quilometragem').value) || null,
-            valor_compra: parseFloat(document.getElementById('valor_compra').value) || null,
-            valor_fipe: parseFloat(document.getElementById('valor_fipe').value) || null,
-            valor_locacao: parseFloat(document.getElementById('valor_locacao').value) || null,
-            status: document.getElementById('status').value,
-            observacoes: document.getElementById('obs').value 
-        };
+            const novaMoto = {
+                loja_id: parseInt(lojaEscolhida), // AGORA ESTÁ DESCOMENTADO E FUNCIONANDO!
+                codigo: document.getElementById('codigo').value,
+                marca: document.getElementById('marca').value,
+                modelo: document.getElementById('modelo').value,
+                versao: document.getElementById('versao').value,
+                placa: document.getElementById('placa').value,
+                chassi: document.getElementById('chassi').value,
+                renavam: document.getElementById('renavam').value,
+                ano_fabricacao: parseInt(document.getElementById('ano_fabricacao').value) || null,
+                ano_modelo: parseInt(document.getElementById('ano_modelo').value) || null,
+                cor: document.getElementById('cor').value,
+                cilindrada: parseInt(document.getElementById('cilindrada').value) || null,
+                categoria: document.getElementById('categoria').value,
+                combustivel: document.getElementById('combustivel').value,
+                cambio: document.getElementById('cambio').value,
+                quilometragem: parseInt(document.getElementById('quilometragem').value) || null,
+                valor_compra: parseFloat(document.getElementById('valor_compra').value) || null,
+                valor_fipe: parseFloat(document.getElementById('valor_fipe').value) || null,
+                valor_locacao: parseFloat(document.getElementById('valor_locacao').value) || null,
+                status: document.getElementById('status').value,
+                observacoes: document.getElementById('obs').value
+            };
 
-        Object.keys(novaMoto).forEach(key => {
-            if (novaMoto[key] === null || novaMoto[key] === '') {
-                delete novaMoto[key];
+            Object.keys(novaMoto).forEach(key => {
+                if (novaMoto[key] === null || novaMoto[key] === '') {
+                    delete novaMoto[key];
+                }
+            });
+
+            // Envia para a tabela motocicletas
+            const { data, error } = await supabase
+                .from('motocicletas')
+                .insert([novaMoto]);
+
+            btnSave.innerText = btnOriginalText;
+            btnSave.disabled = false;
+
+            if (error) {
+                console.error("Erro ao salvar:", error);
+                alert("Erro ao salvar: " + error.message);
+            } else {
+                alert("Motocicleta cadastrada com sucesso!");
+                document.getElementById("formMoto").reset();
+                // Volta o select para a opção padrão
+                document.getElementById('loja_id').value = "";
             }
         });
-
-        // Envia para a tabela motocicletas
-        const { data, error } = await supabase
-            .from('motocicletas')
-            .insert([novaMoto]);
-
-        btnSave.innerText = btnOriginalText;
-        btnSave.disabled = false;
-
-        if (error) {
-            console.error("Erro ao salvar:", error);
-            alert("Erro ao salvar: " + error.message);
-        } else {
-            alert("Motocicleta cadastrada com sucesso!");
-            document.getElementById("formMoto").reset();
-            // Volta o select para a opção padrão
-            document.getElementById('loja_id').value = "";
-        }
-    });
-</script>
+    </script>
 </body>
+
 </html>
