@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão SDR - NoKorre</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/menu.css"> <!-- Ajuste o caminho se colocar na pasta pages -->
+
+    <style>
+        :root {
+            --bg-main: #0a0a0a;
+            --surface: rgba(30, 30, 30, 0.7);
+            --surface-hover: rgba(45, 45, 45, 0.9);
+            --border: rgba(255, 255, 255, 0.08);
+            --accent: #A7BF3B;
+            --text-bright: #FFFFFF;
+            --text-dim: #9CA3AF;
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            background: var(--bg-main);
+            color: var(--text-bright);
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: url("https://raw.githubusercontent.com/lucasfpereira2-wq/Nokorre/main/nokorre.webp") center/cover;
+            filter: blur(10px);
+            opacity: 0.4;
+            z-index: -2;
+        }
+
+        .header-sdr {
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+        }
+
+        .header-sdr h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        .header-sdr span {
+            color: var(--accent);
+        }
+
+        /* Estrutura do Kanban */
+        .kanban-board {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        .kanban-column {
+            background: var(--surface);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 320px;
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            max-height: 80vh;
+        }
+
+        .column-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .column-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+        }
+
+        .card-count {
+            background: rgba(167, 191, 59, 0.15);
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .column-body {
+            padding: 15px;
+            flex-grow: 1;
+            overflow-y: auto;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Estilo dos Cards */
+        .lead-card {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: grab;
+            transition: all 0.2s ease;
+        }
+
+        .lead-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .lead-card:active {
+            cursor: grabbing;
+        }
+
+        .lead-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0 0 5px 0;
+        }
+
+        .lead-phone {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Indicador visual de qual coluna está recebendo o card */
+        .column-body.drag-over {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            border: 1px dashed var(--accent);
+        }
+
+        /* Agrupamento do Título e Ícone */
+        .column-title-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Estilo do Ícone de Interrogação */
+        .tooltip-icon {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            font-weight: bold;
+            cursor: help;
+            position: relative;
+            transition: 0.2s;
+        }
+
+        .tooltip-icon:hover {
+            background: var(--accent);
+            color: var(--bg-main);
+        }
+
+        /* A Caixinha do Tooltip (Aparece ao passar o mouse - AGORA PARA BAIXO) */
+        .tooltip-icon::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            top: 130%; /* Mudou de bottom para top */
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(8px);
+            color: var(--text-bright);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 400;
+            border: 1px solid var(--border);
+            width: 200px;
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 100;
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Pequena seta apontando para cima (conectando o ícone à caixa) */
+        .tooltip-icon::before {
+            content: '';
+            position: absolute;
+            top: 100%; /* Mudou de bottom para top */
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            /* Inverteu a direção da cor para a seta apontar para cima */
+            border-color: transparent transparent rgba(15, 15, 15, 0.95) transparent;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 101;
+        }
+
+        .tooltip-icon:hover::after,
+        .tooltip-icon:hover::before {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+
+    <!-- Script de Proteção -->
+    <script type="module" src="/js/protecao.js"></script> <!-- Ajuste o caminho se necessário -->
+</head>
+
+<body>
+
+    <topbar-menu></topbar-menu>
+
+    <div class="header-sdr">
+        <h1>Gestão de <span>Leads</span></h1>
+        <p style="color: var(--text-dim); margin-top: 5px;">Arraste os cards para atualizar o status do atendimento.</p>
+    </div>
+
+    <div class="kanban-board">
+
+        <!-- Coluna: Novos -->
+        <div class="kanban-column">
+            <div class="column-header">
+                <div class="column-title-group">
+                    <h3>Novos Leads</h3>
+                    <span class="tooltip-icon"
+                        data-tooltip="Clientes que acabaram de se cadastrar e ainda não receberam o primeiro contato.">?</span>
+                </div>
+                <span class="card-count" id="count-novos">0</span>
+            </div>
+            <div class="column-body" data-status="novos"></div>
+        </div>
+
+        <!-- Coluna: Tentativa de Contato -->
+        <div class="kanban-column">
+            <div class="column-header">
+                <div class="column-title-group">
+                    <h3>Em Contato</h3>
+                    <span class="tooltip-icon"
+                        data-tooltip="SDR já chamou, mas o cliente ainda não respondeu ou a conversa está no início.">?</span>
+                </div>
+                <span class="card-count" id="count-contato">0</span>
+            </div>
+            <div class="column-body" data-status="contato"></div>
+        </div>
+
+        <!-- Coluna: Qualificação -->
+        <div class="kanban-column">
+            <div class="column-header">
+                <div class="column-title-group">
+                    <h3>Qualificação</h3>
+                    <span class="tooltip-icon"
+                        data-tooltip="Cliente respondeu e o SDR está extraindo informações de perfil e interesse.">?</span>
+                </div>
+                <span class="card-count" id="count-qualificacao">0</span>
+            </div>
+            <div class="column-body" data-status="qualificacao"></div>
+        </div>
+
+        <!-- Coluna: Agendado -->
+        <div class="kanban-column" style="border-top: 3px solid var(--accent);">
+            <div class="column-header">
+                <div class="column-title-group">
+                    <h3 style="color: var(--text-bright);">Agendado</h3>
+                    <span class="tooltip-icon"
+                        data-tooltip="Lead quente transferido para o fechamento. Visita na loja agendada!">?</span>
+                </div>
+                <span class="card-count" id="count-agendado">0</span>
+            </div>
+            <div class="column-body" data-status="agendado"></div>
+        </div>
+
+    </div>
+
+    <script src="js/menu.js"></script>
+    <script type="module">
+        import { supabase } from './js/auth.js'; // Ajuste o caminho dependendo de onde salvou o HTML
+
+        // ==========================================
+        // 1. CARREGAR OS LEADS DO SUPABASE
+        // ==========================================
+        async function carregarLeads() {
+            const { data: leads, error } = await supabase.from('leads').select('*');
+
+            if (error) {
+                console.error("Erro ao buscar leads:", error);
+                return;
+            }
+
+            // Limpa as colunas antes de preencher
+            document.querySelectorAll('.column-body').forEach(col => col.innerHTML = '');
+
+            leads.forEach(lead => {
+                const card = document.createElement('div');
+                card.className = 'lead-card';
+                card.draggable = true;
+                card.id = `lead-${lead.id}`; // Guarda o ID do banco no HTML
+                card.dataset.id = lead.id;
+
+                card.innerHTML = `
+                    <h4 class="lead-name">${lead.nome}</h4>
+                    <span class="lead-phone">📞 ${lead.telefone || 'Sem número'}</span>
+                `;
+
+                // Configura o início do "Arrastar"
+                card.addEventListener('dragstart', (e) => {
+                    e.dataTransfer.setData('text/plain', card.id);
+                    setTimeout(() => card.style.opacity = '0.5', 0);
+                });
+
+                card.addEventListener('dragend', () => {
+                    card.style.opacity = '1';
+                });
+
+                // Acha a coluna correta baseada no status do banco e injeta o card
+                const colunaDestino = document.querySelector(`.column-body[data-status="${lead.status}"]`);
+                if (colunaDestino) {
+                    colunaDestino.appendChild(card);
+                }
+            });
+
+            atualizarContadores();
+        }
+
+        // ==========================================
+        // 2. LÓGICA DE ARRASTAR E SOLTAR (DRAG & DROP)
+        // ==========================================
+        const colunas = document.querySelectorAll('.column-body');
+
+        colunas.forEach(coluna => {
+            coluna.addEventListener('dragover', (e) => {
+                e.preventDefault(); // Necessário para permitir o drop
+                coluna.classList.add('drag-over');
+            });
+
+            coluna.addEventListener('dragleave', () => {
+                coluna.classList.remove('drag-over');
+            });
+
+            coluna.addEventListener('drop', async (e) => {
+                e.preventDefault();
+                coluna.classList.remove('drag-over');
+
+                const cardId = e.dataTransfer.getData('text/plain');
+                const card = document.getElementById(cardId);
+                const leadIdBanco = card.dataset.id;
+                const novoStatus = coluna.dataset.status;
+
+                // Move o card visualmente na hora para o usuário não esperar
+                coluna.appendChild(card);
+                atualizarContadores();
+
+                // Salva a alteração de coluna lá no Supabase no background
+                const { error } = await supabase
+                    .from('leads')
+                    .update({ status: novoStatus })
+                    .eq('id', leadIdBanco);
+
+                if (error) {
+                    alert("Erro ao atualizar status. Recarregue a página.");
+                    console.error(error);
+                }
+            });
+        });
+
+        // ==========================================
+        // 3. FUNÇÃO AUXILIAR: CONTAR CARDS
+        // ==========================================
+        function atualizarContadores() {
+            document.querySelectorAll('.kanban-column').forEach(coluna => {
+                const qtd = coluna.querySelectorAll('.lead-card').length;
+                coluna.querySelector('.card-count').innerText = qtd;
+            });
+        }
+
+        // Inicia buscando os dados
+        carregarLeads();
+    </script>
+</body>
+
+</html>
